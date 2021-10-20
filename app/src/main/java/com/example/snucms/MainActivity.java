@@ -2,6 +2,9 @@ package com.example.snucms;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 /*
 Timetable with Google Calendar Integration and notifications for classes, assignments, ISC slots and other events
@@ -18,7 +21,7 @@ Firebase database
     ISC slots
     Library entries
     Tuckshop entries
-Notificaitions
+Notifications
 QR code scanner
  */
 
@@ -97,9 +100,39 @@ Both are displayed seperately per user
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button button1 = findViewById(R.id.button10);
+        Button button2 = findViewById(R.id.button11);
+        EditText editText = findViewById(R.id.editTextNumber);
+
+        button1.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        firebaseHelper.addLibraryEntry("name", "netid", 1234, 2);
+                    }
+                }
+        );
+
+
+        button2.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String s = editText.getText().toString();
+                        if(s.isEmpty())
+                            return;
+                        long l = Long.parseLong(s);
+                        firebaseHelper.getSlots(l);
+                    }
+                }
+        );
+
     }
 }
