@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         Button button1 = findViewById(R.id.button10);
         Button button2 = findViewById(R.id.button11);
         EditText editText = findViewById(R.id.editTextNumber);
-
+        //comment
         button1.setOnClickListener(
                 view -> firebaseHelper.addLibraryEntry("name", "netid", 1234, 2)
         );
