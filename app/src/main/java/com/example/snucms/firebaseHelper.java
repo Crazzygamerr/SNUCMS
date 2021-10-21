@@ -48,6 +48,7 @@ public class firebaseHelper {
                 new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        System.out.println(queryDocumentSnapshots.size());
                         for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             System.out.println(documentSnapshot.getId());
                             System.out.println(documentSnapshot.getData());

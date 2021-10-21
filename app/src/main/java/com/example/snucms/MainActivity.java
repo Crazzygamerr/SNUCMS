@@ -1,4 +1,4 @@
-package com.example.loginpage;
+package com.example.snucms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
