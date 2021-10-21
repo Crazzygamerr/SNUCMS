@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button button1 = findViewById(R.id.button10);
         Button button2 = findViewById(R.id.button11);
+        //Button button3 = findViewById(R.id.)
         EditText editText = findViewById(R.id.editTextNumber);
         //comment
         button1.setOnClickListener(

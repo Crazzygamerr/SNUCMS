@@ -9,7 +9,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,10 +74,15 @@ public class firebaseHelper {
         );
     }
 
-    /*public void addSlot() {
-        db.collection("ISC").document("MWF 8AM").set({
-
-        });
-    }*/
+    public void addSlot() {
+        Map<String, Object> docData = new HashMap<>();
+        docData.put("slotName", "Gym slot");
+        docData.put("timing", "MWF 6am");
+        docData.put("totalSlots", 8);
+        docData.put("remainingSlots", 6);
+        docData.put("names", Arrays.asList("test1", "test2"));
+        docData.put("rollno", Arrays.asList(0000, 0001));
+        db.collection("ISC").document("MWF 6AM").set(docData);
+    }
 
 }
