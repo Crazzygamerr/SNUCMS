@@ -1,30 +1,17 @@
 package com.example.snucms;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.google.android.gms.tasks.OnCanceledListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 public class firebaseHelper {
-    private static final firebaseHelper helper = new firebaseHelper();
     private static FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    public static firebaseHelper getInstance() {
-        return helper;
-    }
 
     public static void addLibraryEntry(String name, String netid, long rollno, int token) {
         Map<String, Object> entry = new HashMap<>();
