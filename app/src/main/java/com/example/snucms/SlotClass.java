@@ -1,20 +1,22 @@
 package com.example.snucms;
 
 import com.google.firebase.firestore.DocumentId;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
 public class SlotClass {
-    @DocumentId
+    public DocumentReference documentReference;
     public String slotName, timing;
-    int totalSlots, remainingSlots;
-    public ArrayList<String> names;
-    public ArrayList<Long> rollno;
+    public int totalSlots, remainingSlots;
+    public ArrayList<String> names, rollno;
 
     SlotClass() {
     }
 
-    SlotClass(String slotName, String timing, int totalSlots, int remainingSlots, ArrayList<String> names, ArrayList<Long> rollno) {
+    SlotClass(DocumentReference documentReference, String slotName, String timing, int totalSlots, int remainingSlots, ArrayList<String> names, ArrayList<String> rollno) {
+        this.documentReference = documentReference;
         this.slotName = slotName;
         this.timing = timing;
         this.totalSlots = totalSlots;
@@ -23,7 +25,7 @@ public class SlotClass {
         this.rollno = rollno;
     }
 
-    public SlotClass setSlotName(String slotName) {
+    public SlotClass setSlot(String slotName) {
         this.slotName = slotName;
         return this;
     }

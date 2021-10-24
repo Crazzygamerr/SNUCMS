@@ -4,19 +4,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class firebaseHelper {
-    private static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public static  FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public static void addLibraryEntry(String name, String netid, long rollno, int token) {
         Map<String, Object> entry = new HashMap<>();
@@ -48,41 +45,65 @@ public class firebaseHelper {
         );
     }*/
 
-    public static void getSlot(long rollno) {
+    public static void getSlots(String rollno) {
         db.collection("ISC").get().addOnSuccessListener(
                 queryDocumentSnapshots -> {
                     //System.out.println(queryDocumentSnapshots.size());
                     //Map<String, Object> slot = Collections.emptyMap();
-                    ArrayList<SlotClass> allSlots = new ArrayList<>();
+                    ArrayList<SlotClass> allSlots = MainActivity.allSlots;
                     DocumentSnapshot documentSnapshot;
                     for(int i=0;i< queryDocumentSnapshots.size();i++) {
 
                         documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
-                        SlotClass slot = documentSnapshot.toObject(SlotClass.class).setSlotName(documentSnapshot.getId());
-
+                        System.out.println(documentSnapshot.getReference());
+                        SlotClass slot = documentSnapshot
+                                .toObject(SlotClass.class)
+                                .setSlot(documentSnapshot.getId());
                         if(!slot.rollno.contains(rollno)) {
                             allSlots.add(slot);
                         } else {
-                            allSlots.removeAll(allSlots);
+                            allSlots.clear();
                             allSlots.add(slot);
                             break;
                         }
 
                     }
-                    //System.out.println(allSlots.size());
+                    //System.out.println(allSlots.get(1));
                 }
         );
     }
 
-    public void addSlot() {
-        Map<String, Object> docData = new HashMap<>();
-        docData.put("slotName", "Gym slot");
-        docData.put("timing", "MWF 6am");
-        docData.put("totalSlots", 8);
-        docData.put("remainingSlots", 6);
-        docData.put("names", Arrays.asList("test1", "test2"));
-        docData.put("rollno", Arrays.asList(0000, 0001));
-        db.collection("ISC").document("MWF 6AM").set(docData);
+    public static void addSlot(SlotClass slotClass, String name, String rollno) {
+        //slotClass.documentReference.set();
+        slotClass.documentReference.update(
+                "names", FieldValue.arrayUnion(name),
+                "rollno", FieldValue.arrayUnion(rollno),
+                "remainingSlots", FieldValue.increment(-1)
+        );
+    }
+
+    public static void populateSlots() {
+        System.out.println("populate");
+        SlotClass slotClass = new SlotClass(
+                db.collection("ISC").document("MWF 7AM"),
+                "Gym slot",
+                "MWF 7AM",
+                10,
+                9,
+                new ArrayList<>(
+                        Arrays.asList(
+                                "test3"
+                        )
+                ),
+                new ArrayList<>(
+                        Arrays.asList(
+                                "0005"
+                        )
+                )
+        );
+        db.collection("ISC")
+                .document("MWF 7AM")
+                .set(slotClass);
     }
 
 }

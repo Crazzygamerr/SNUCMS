@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SNU CMS</string>
+    <string name="add_entry">Add Entry</string>
+    <string name="get_slot">Get Slot</string>
+    <string name="populate_slot">Populate slot</string>
+    <string name="set_slot">Set slot</string>
 </resources>

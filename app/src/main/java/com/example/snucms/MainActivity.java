@@ -1,11 +1,16 @@
 package com.example.snucms;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 Timetable with Google Calendar Integration and notifications for classes, assignments, ISC slots and other events
@@ -96,7 +101,7 @@ Both are displayed seperately per user
 
 public class MainActivity extends AppCompatActivity {
 
-
+    public static ArrayList<SlotClass> allSlots = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +112,18 @@ public class MainActivity extends AppCompatActivity {
 
         Button button1 = findViewById(R.id.button10);
         Button button2 = findViewById(R.id.button11);
-        //Button button3 = findViewById(R.id.)
+        Button button3 = findViewById(R.id.button12);
+        Button button4 = findViewById(R.id.button13);
         EditText editText = findViewById(R.id.editTextNumber);
-        //comment
+        EditText editName = findViewById(R.id.editText);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+
+        MyAdapter myAdapter = new MyAdapter(this, new ArrayList<>(Arrays.asList("test1", "test2", "test3")));
+        recyclerView.setAdapter(myAdapter);
+
         button1.setOnClickListener(
                 view -> firebaseHelper.addLibraryEntry("name", "netid", 1234, 2)
         );
@@ -117,10 +131,21 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(
                 view -> {
                     String s = editText.getText().toString();
-                    if(s.isEmpty())
-                        return;
-                    long l = Long.parseLong(s);
-                    firebaseHelper.getSlot(l);
+                    firebaseHelper.getSlots(s);
+                }
+        );
+
+        button3.setOnClickListener(
+                view -> {
+                    firebaseHelper.populateSlots();
+                }
+        );
+
+        button4.setOnClickListener(
+                view -> {
+                    String roll = editText.getText().toString();
+                    String name = editName.getText().toString();
+                    firebaseHelper.addSlot(allSlots.get(0), name, roll);
                 }
         );
 

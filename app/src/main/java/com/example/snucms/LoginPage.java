@@ -10,13 +10,15 @@ import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.Objects;
+
 public class LoginPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
-
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         TextView username = findViewById(R.id.username);
         TextView password = findViewById(R.id.password);
