@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<String> arrayList;
 
-    public MyAdapter(Context context, ArrayList<String> arrayList) {
+    public SlotViewAdapter(Context context, ArrayList<String> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -25,13 +25,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.slot_item,parent,false);
 
         return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SlotViewAdapter.MyViewHolder holder, int position) {
 
         String s = arrayList.get(position);
         holder.textView.setText(s);

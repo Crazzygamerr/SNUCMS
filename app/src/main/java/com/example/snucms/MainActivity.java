@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -108,12 +109,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = getIntent();
+        Button button1 = findViewById(R.id.button1);
+        Button button2 = findViewById(R.id.button2);
+        Button button3 = findViewById(R.id.button3);
+        Button button4 = findViewById(R.id.button4);
+        Button btnCallBob = findViewById(R.id.btnCallBob);
+        Button btnGetIssue = findViewById(R.id.btnGetIssue);
+        Button btnSetIssue = findViewById(R.id.btnSetIssue);
+        Button btnPopulateIssue = findViewById(R.id.btnPopulateIssue);
 
-        Button button1 = findViewById(R.id.button10);
-        Button button2 = findViewById(R.id.button11);
-        Button button3 = findViewById(R.id.button12);
-        Button button4 = findViewById(R.id.button13);
         EditText editText = findViewById(R.id.editTextNumber);
         EditText editName = findViewById(R.id.editText);
 
@@ -121,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        MyAdapter myAdapter = new MyAdapter(this, new ArrayList<>(Arrays.asList("test1", "test2", "test3")));
+        SlotViewAdapter myAdapter = new SlotViewAdapter(this, new ArrayList<>(Arrays.asList("test1", "test2", "test3")));
         recyclerView.setAdapter(myAdapter);
 
         button1.setOnClickListener(
@@ -146,6 +150,31 @@ public class MainActivity extends AppCompatActivity {
                     String roll = editText.getText().toString();
                     String name = editName.getText().toString();
                     firebaseHelper.addSlot(allSlots.get(0), name, roll);
+                }
+        );
+
+        btnCallBob.setOnClickListener(
+                view -> {
+                    Intent intent = new Intent(MainActivity.this, CallBob.class);
+                    startActivity(intent);
+                }
+        );
+
+        btnGetIssue.setOnClickListener(
+                view -> {
+                    firebaseHelper.getIssues("0001");
+                }
+        );
+
+        btnSetIssue.setOnClickListener(
+                view -> {
+                    firebaseHelper.populateIssues();
+                }
+        );
+
+        btnPopulateIssue.setOnClickListener(
+                view -> {
+                    firebaseHelper.populateIssues();
                 }
         );
 

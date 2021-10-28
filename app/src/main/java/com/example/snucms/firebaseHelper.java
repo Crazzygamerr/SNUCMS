@@ -1,12 +1,20 @@
 package com.example.snucms;
 
+import androidx.annotation.Nullable;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.MonthDay;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -55,7 +63,6 @@ public class firebaseHelper {
                     for(int i=0;i< queryDocumentSnapshots.size();i++) {
 
                         documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
-                        System.out.println(documentSnapshot.getReference());
                         SlotClass slot = documentSnapshot
                                 .toObject(SlotClass.class)
                                 .setSlot(documentSnapshot.getId());
@@ -83,7 +90,6 @@ public class firebaseHelper {
     }
 
     public static void populateSlots() {
-        System.out.println("populate");
         SlotClass slotClass = new SlotClass(
                 db.collection("ISC").document("MWF 7AM"),
                 "Gym slot",
@@ -101,9 +107,81 @@ public class firebaseHelper {
                         )
                 )
         );
-        db.collection("ISC")
-                .document("MWF 7AM")
-                .set(slotClass);
+        slotClass.documentReference.set(slotClass);
+    }
+
+    public static void setIssueListener(String rollno) {
+        db.collection("callBob/"+rollno+"/issues").addSnapshotListener(
+                new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
+                        ArrayList<IssueClass> allIssues = new ArrayList<>();
+                        DocumentSnapshot documentSnapshot;
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
+                            IssueClass issue = documentSnapshot
+                                    .toObject(IssueClass.class)
+                                    .setId(documentSnapshot.getId());
+
+                            allIssues.add(issue);
+                        }
+                        System.out.println(allIssues.size());
+                        CallBob.allIssues.clear();
+                        CallBob.allIssues.addAll(allIssues);
+                        CallBob.myAdapter.notifyDataSetChanged();
+                    }
+                }
+        );
+    }
+
+    public static void getIssues(String rollno) {
+        db.collection("callBob/"+rollno+"/issues").get().addOnSuccessListener(
+                new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        ArrayList<IssueClass> allIssues = CallBob.allIssues;
+                        DocumentSnapshot documentSnapshot;
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
+                            IssueClass issue = documentSnapshot
+                                    .toObject(IssueClass.class)
+                                    .setId(documentSnapshot.getId());
+
+                            allIssues.add(issue);
+                        }
+                        System.out.println(allIssues.size());
+                    }
+                }
+        );
+    }
+
+    public static void addIssue(IssueClass issue, String rollno) {
+        String id = Year.now().toString() + MonthDay.now().getMonth().toString() + MonthDay.now().getDayOfMonth();
+        int temp = 0;
+        for(IssueClass tempIssue : CallBob.allIssues) {
+            int temp1 = Integer.parseInt(tempIssue.id.substring(8));
+            temp = Math.max(temp, temp1);
+        }
+        System.out.println(id);
+        //db.collection("callBob/"+rollno+"/issues").document(issue.id).set(issue);
+    }
+
+    public static void populateIssues() {
+        String rollno = "0001";
+        String issueno = "20210525001";
+        IssueClass issueClass = new IssueClass(
+                db.collection("callBob/"+rollno+"/issues").document(issueno),
+                issueno,
+                "test title1",
+                "test desccccccccccccccccccccccccc",
+                "test location1",
+                Timestamp.now(),
+                null,
+                false,
+                false,
+                false
+        );
+        issueClass.documentReference.set(issueClass);
     }
 
 }

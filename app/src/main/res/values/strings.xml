@@ -4,4 +4,8 @@
     <string name="get_slot">Get Slot</string>
     <string name="populate_slot">Populate slot</string>
     <string name="set_slot">Set slot</string>
+    <string name="populate_issue">populate issue</string>
+    <string name="call_bob">Call Bob</string>
+    <string name="set_issue">set issue</string>
+    <string name="get_issue">get issue</string>
 </resources>
