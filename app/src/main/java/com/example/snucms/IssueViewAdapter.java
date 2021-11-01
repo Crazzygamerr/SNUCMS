@@ -1,20 +1,30 @@
 package com.example.snucms;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<IssueClass> arrayList;
+    int expandedPos = -1;
 
     public IssueViewAdapter(Context context, ArrayList<IssueClass> arrayList) {
         this.context = context;
@@ -33,10 +43,14 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull IssueViewAdapter.MyViewHolder holder, int position) {
 
-        IssueClass s = arrayList.get(position);
-        holder.idTextView.setText(s.id);
-        holder.titleTextView.setText(s.title);
-        holder.descTextView.setText(s.description);
+        IssueClass issueClass = arrayList.get(position);
+        holder.bind(issueClass, context);
+
+        holder.itemView.setOnClickListener(
+                view -> {
+                    holder.open(issueClass.studentVerify);
+                }
+        );
 
     }
 
@@ -49,14 +63,109 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView idTextView, titleTextView, descTextView;
+        TextView idTextView, titleTextView, descTextView,
+                dateView, statusView,
+                locationTextView, ackTextView, fixTimeTextView,
+                callBobVerifyTextView, studentVerifyTextView;
+        LinearLayout linearLayout, linearLayoutOpen, linearLayoutButton;
+        Button btnVerify;
+
+        boolean visible = false;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             idTextView = itemView.findViewById(R.id.id);
             titleTextView = itemView.findViewById(R.id.title);
             descTextView = itemView.findViewById(R.id.desc);
+
+            dateView = itemView.findViewById(R.id.dateView);
+            statusView = itemView.findViewById(R.id.statusView);
+
+            locationTextView = itemView.findViewById(R.id.locationTextView);
+            ackTextView = itemView.findViewById(R.id.ackTextView);
+            fixTimeTextView = itemView.findViewById(R.id.fixTimeTextView);
+            callBobVerifyTextView = itemView.findViewById(R.id.callBobVerifyTextView);
+            studentVerifyTextView = itemView.findViewById(R.id.studentVerifyTextView);
+
+            linearLayout = itemView.findViewById(R.id.linearLayout);
+            linearLayoutOpen = itemView.findViewById(R.id.linearLayoutOpen);
+            linearLayoutButton = itemView.findViewById(R.id.linearLayoutButton);
+
+            btnVerify = itemView.findViewById(R.id.btnVerify);
+
         }
+        
+        private void bind(IssueClass issueClass, Context context) {
+            SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+            idTextView.setText(issueClass.id);
+            titleTextView.setText(issueClass.title);
+            descTextView.setText(issueClass.description);
+            descTextView.setMaxLines(3);
+
+            //dateView.setText((issueClass.genTime == null)?"":issueClass.genTime.toString());
+            dateView.setText((issueClass.genTime == null)?"":sfd.format(issueClass.genTime.toDate()));
+            if(issueClass.studentVerify) {
+                statusView.setText(R.string.resolved);
+                statusView.setTextColor(Color.GREEN);
+            } else {
+                statusView.setText(R.string.pending);
+                statusView.setTextColor(Color.RED);
+            }
+
+            linearLayoutOpen.setVisibility(View.GONE);
+            linearLayoutButton.setVisibility(View.GONE);
+            //System.out.println((issueClass.genTime != null)?"-----------"+issueClass.genTime.getClass():"");
+            String
+                    location = "Location: " + issueClass.location,
+                    ack = "Acknowleged: " + ((issueClass.ack)?"True":"False"),
+                    fixTime = "Time till fix: " + ((issueClass.fixTime == null)?"":sfd.format(issueClass.fixTime.toDate())),
+                    callBobVerify = "Verified by Callbob: " + ((issueClass.callBobVerify)?"True":"False"),
+                    studentVerify = "Verified by student: " + ((issueClass.studentVerify)?"True":"False");
+            locationTextView.setText(location);
+            ackTextView.setText(ack);
+            fixTimeTextView.setText(fixTime);
+            callBobVerifyTextView.setText(callBobVerify);
+            studentVerifyTextView.setText(studentVerify);
+
+            btnVerify.setOnClickListener(
+                    view -> confirm(issueClass, context)
+            );
+            
+        }
+
+        private void open(boolean studentVerify) {
+            visible = !visible;
+            linearLayoutOpen.setVisibility(
+                    (visible)
+                            ? View.VISIBLE
+                            : View.GONE
+            );
+            linearLayoutButton.setVisibility(
+                    (visible && !studentVerify)
+                            ? View.VISIBLE
+                            : View.GONE);
+        }
+
+        private void confirm(IssueClass issueClass, Context context) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Do you want to confirm that is issue is resolved?");
+            builder.setCancelable(true);
+            builder.setPositiveButton(
+                    "Yes",
+                    (dialogInterface, i) -> {
+                        firebaseHelper.verifyIssue(issueClass.documentReference);
+                        dialogInterface.dismiss();
+                    }
+            );
+            builder.setNegativeButton(
+                    "No",
+                    (dialogInterface, i) -> dialogInterface.dismiss()
+            );
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
     }
 
 }

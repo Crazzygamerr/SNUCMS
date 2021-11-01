@@ -80,6 +80,25 @@
             android:layout_height="match_parent">
 
             <Button
+                android:id="@+id/btnGymSlot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/gym_slot" />
+
+            <!--<Button
+                android:id="@+id/btnCallBob"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/call_bob"
+                />-->
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
                 android:id="@+id/btnGetIssue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

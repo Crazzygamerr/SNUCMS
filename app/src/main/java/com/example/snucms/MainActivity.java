@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
         Button button2 = findViewById(R.id.button2);
         Button button3 = findViewById(R.id.button3);
         Button button4 = findViewById(R.id.button4);
+        Button btnGymSlot = findViewById(R.id.btnGymSlot);
         Button btnCallBob = findViewById(R.id.btnCallBob);
         Button btnGetIssue = findViewById(R.id.btnGetIssue);
         Button btnSetIssue = findViewById(R.id.btnSetIssue);
@@ -152,6 +153,13 @@ public class MainActivity extends AppCompatActivity {
                     firebaseHelper.addSlot(allSlots.get(0), name, roll);
                 }
         );
+
+        /*btnGymSlot.setOnClickListener(
+                view -> {
+                    Intent intent = new Intent(MainActivity.this, .class);
+                    startActivity(intent);
+                }
+        );*/
 
         btnCallBob.setOnClickListener(
                 view -> {

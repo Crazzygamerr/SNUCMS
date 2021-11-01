@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.time.MonthDay;
 import java.time.Year;
@@ -124,8 +125,8 @@ public class firebaseHelper {
                                     .setId(documentSnapshot.getId());
 
                             allIssues.add(issue);
+                            //System.out.println(documentSnapshot.get("genTime"));
                         }
-                        System.out.println(allIssues.size());
                         CallBob.allIssues.clear();
                         CallBob.allIssues.addAll(allIssues);
                         CallBob.myAdapter.notifyDataSetChanged();
@@ -149,7 +150,7 @@ public class firebaseHelper {
 
                             allIssues.add(issue);
                         }
-                        System.out.println(allIssues.size());
+                        //System.out.println(allIssues.size());
                     }
                 }
         );
@@ -162,26 +163,51 @@ public class firebaseHelper {
             int temp1 = Integer.parseInt(tempIssue.id.substring(8));
             temp = Math.max(temp, temp1);
         }
-        System.out.println(id);
+        //System.out.println(id);
         //db.collection("callBob/"+rollno+"/issues").document(issue.id).set(issue);
     }
 
     public static void populateIssues() {
         String rollno = "0001";
         String issueno = "20210525001";
-        IssueClass issueClass = new IssueClass(
-                db.collection("callBob/"+rollno+"/issues").document(issueno),
-                issueno,
-                "test title1",
-                "test desccccccccccccccccccccccccc",
-                "test location1",
-                Timestamp.now(),
-                null,
+        Map<String, Object> data = new HashMap<>();
+        data.put("documentReference", db.collection("callBob/"+rollno+"/issues").document(issueno));
+        data.put("id", issueno);
+        data.put("title", "test title1");
+        data.put("description", "test desccccccccccccccccccccccccc");
+        data.put("location", "test location1");
+        data.put("genTime", Timestamp.now());
+        data.put("fixTime", null);
+        data.put("ack", false);
+        data.put("studentVerify", false);
+        data.put("callBobVerify", false);
+
+        IssueClass issueClass = IssueClass.fromMap(data);
+        /*IssueClass issueClass = new IssueClass(
+                ,
+                ,
+                ,
+                ,
+                ,
+                ,
+                ,
                 false,
                 false,
                 false
-        );
-        issueClass.documentReference.set(issueClass);
+        );*/
+        //issueClass.documentReference.set(issueClass);
+        /*issueClass.documentReference.update(
+                "gentime", Timestamp.now(),
+                "fixTime", null,
+                "ack", false,
+                "studentVerify", false,
+                "callBobVerify", false
+        );*/
+        issueClass.documentReference.set(data);
+    }
+
+    public static void verifyIssue(DocumentReference documentReference) {
+        documentReference.update("studentVerify", true);
     }
 
 }
