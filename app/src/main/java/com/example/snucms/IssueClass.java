@@ -15,6 +15,10 @@ public class IssueClass {
     boolean ack, studentVerify, callBobVerify;
 
     public IssueClass() {
+        fixTime = null;
+        ack = false;
+        studentVerify = false;
+        callBobVerify = false;
     }
 
     public IssueClass(DocumentReference documentReference, String id, String title, String description, String location, Timestamp genTime, Timestamp fixTime, boolean ack, boolean studentVerify, boolean callBobVerify) {

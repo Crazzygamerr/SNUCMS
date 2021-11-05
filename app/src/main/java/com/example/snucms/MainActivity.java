@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -120,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnPopulateIssue = findViewById(R.id.btnPopulateIssue);
 
         EditText editText = findViewById(R.id.editTextNumber);
-        EditText editName = findViewById(R.id.editText);
+        EditText editName = findViewById(R.id.editTextTitle);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

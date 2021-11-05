@@ -14,4 +14,6 @@
     <string name="pending">Pending</string>
     <string name="gym_slot">Gym Slot</string>
     <string name="verify">Verify</string>
+    <string name="title">Title</string>
+    <string name="location">Location</string>
 </resources>

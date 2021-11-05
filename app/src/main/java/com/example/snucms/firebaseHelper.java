@@ -12,14 +12,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
 
-import java.time.MonthDay;
-import java.time.Year;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.*;
+import java.util.*;
 
 public class firebaseHelper {
     public static  FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -32,27 +27,9 @@ public class firebaseHelper {
         entry.put("rollno", rollno);
         entry.put("time", Timestamp.now());
         db.collection("Library").add(entry).addOnSuccessListener(
-                new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        System.out.println("Success");
-                    }
-                }
+                documentReference -> System.out.println("Success")
         );
     }
-
-    /*public static void checkSlot(long rollno) {
-        boolean exists = false;
-        db.collection("ISC").whereArrayContains("rollno", rollno).get().addOnSuccessListener(
-                new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        //if(queryDocumentSnapshots.size() == 1)
-
-                    }
-                }
-        );
-    }*/
 
     public static void getSlots(String rollno) {
         db.collection("ISC").get().addOnSuccessListener(
@@ -99,12 +76,14 @@ public class firebaseHelper {
                 9,
                 new ArrayList<>(
                         Arrays.asList(
-                                "test3"
+                                "test3",
+                                "test4"
                         )
                 ),
                 new ArrayList<>(
                         Arrays.asList(
-                                "0005"
+                                "0005",
+                                "0006"
                         )
                 )
         );
@@ -112,7 +91,7 @@ public class firebaseHelper {
     }
 
     public static void setIssueListener(String rollno) {
-        db.collection("callBob/"+rollno+"/issues").addSnapshotListener(
+        db.collection("callBob/"+rollno+"/issues").orderBy("genTime", Query.Direction.DESCENDING).addSnapshotListener(
                 new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
@@ -157,14 +136,26 @@ public class firebaseHelper {
     }
 
     public static void addIssue(IssueClass issue, String rollno) {
-        String id = Year.now().toString() + MonthDay.now().getMonth().toString() + MonthDay.now().getDayOfMonth();
+        String date = Year.now().toString() + MonthDay.now().getMonthValue(),
+                day = String.valueOf(MonthDay.now().getDayOfMonth()),
+                id;
+        if(day.length() < 2)
+            day = "0" + day;
+        date = date + day;
         int temp = 0;
         for(IssueClass tempIssue : CallBob.allIssues) {
             int temp1 = Integer.parseInt(tempIssue.id.substring(8));
             temp = Math.max(temp, temp1);
         }
-        //System.out.println(id);
-        //db.collection("callBob/"+rollno+"/issues").document(issue.id).set(issue);
+        temp++;
+        id = String.valueOf(temp);
+        while(id.length() < 3)
+            id = "0" + id;
+        issue.id = date + id;
+        System.out.println(issue.id);
+        issue.documentReference = db.collection("callBob/"+rollno+"/issues").document(String.valueOf(temp));
+        db.collection("callBob/"+rollno+"/issues")
+                .document(issue.id).set(issue);
     }
 
     public static void populateIssues() {
@@ -208,6 +199,12 @@ public class firebaseHelper {
 
     public static void verifyIssue(DocumentReference documentReference) {
         documentReference.update("studentVerify", true);
+    }
+
+    public static void addOrder(OrderClass orderClass) {
+        db.collection("Tuckshop/"+orderClass.rollno+"/orders").add(orderClass).addOnSuccessListener(
+                documentReference -> System.out.println("Success")
+        );
     }
 
 }
