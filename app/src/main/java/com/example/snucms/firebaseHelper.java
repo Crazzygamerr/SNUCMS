@@ -174,18 +174,6 @@ public class firebaseHelper {
         data.put("callBobVerify", false);
 
         IssueClass issueClass = IssueClass.fromMap(data);
-        /*IssueClass issueClass = new IssueClass(
-                ,
-                ,
-                ,
-                ,
-                ,
-                ,
-                ,
-                false,
-                false,
-                false
-        );*/
         //issueClass.documentReference.set(issueClass);
         /*issueClass.documentReference.update(
                 "gentime", Timestamp.now(),
@@ -205,6 +193,49 @@ public class firebaseHelper {
         db.collection("Tuckshop/"+orderClass.rollno+"/orders").add(orderClass).addOnSuccessListener(
                 documentReference -> System.out.println("Success")
         );
+    }
+
+    public static void setOrderListener(String rollno) {
+        db.collection("Tuckshop/"+rollno+"/orders").orderBy("genTime", Query.Direction.DESCENDING).addSnapshotListener(
+                new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot queryDocumentSnapshots, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
+                        ArrayList<OrderClass> allOrders = new ArrayList<>();
+                        DocumentSnapshot documentSnapshot;
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
+                            documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
+                            OrderClass order = documentSnapshot
+                                    .toObject(OrderClass.class)
+                                    .setId(documentSnapshot.getId());
+
+                            allOrders.add(order);
+                            /*System.out.println(documentSnapshot.get("genTime"));
+                            System.out.println(Arrays.toString(new ArrayList[]{allOrders.get(i).order}));*/
+                        }
+                        Tuckshop.allOrders.clear();
+                        Tuckshop.allOrders.addAll(allOrders);
+                        Tuckshop.myAdapter.notifyDataSetChanged();
+                    }
+                }
+        );
+    }
+
+
+    public static void populateOrders() {
+        String rollno = "0001";
+        String orderno = "20210525001";
+        Map<String, Object> data = new HashMap<>();
+        data.put("documentReference", db.collection("Tuckshop/"+rollno+"/orders").document(orderno));
+        data.put("id", orderno);
+        data.put("name", "test1");
+        data.put("shop", "Navin tea");
+        data.put("genTime", Timestamp.now());
+        data.put("pending", false);
+        data.put("order", new ArrayList<>(Arrays.asList("Paneer roll - 2","Cheese roll - 3")));
+
+        OrderClass orderClass = OrderClass.fromMap(data);
+
+        orderClass.documentReference.set(data);
     }
 
 }

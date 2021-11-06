@@ -2,7 +2,6 @@ package com.example.snucms;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyViewHolder> {
+public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.IssueViewHolder> {
 
     Context context;
     ArrayList<IssueClass> arrayList;
@@ -33,24 +29,18 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyVi
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public IssueViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(context).inflate(R.layout.issue_item,parent,false);
 
-        return new MyViewHolder(v);
+        return new IssueViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IssueViewAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IssueViewHolder holder, int position) {
 
         IssueClass issueClass = arrayList.get(position);
         holder.bind(issueClass, context);
-
-        holder.itemView.setOnClickListener(
-                view -> {
-                    holder.open(issueClass.studentVerify);
-                }
-        );
 
     }
 
@@ -61,7 +51,7 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyVi
         return arrayList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class IssueViewHolder extends RecyclerView.ViewHolder{
 
         TextView idTextView, titleTextView, descTextView,
                 dateView, statusView,
@@ -72,7 +62,7 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyVi
 
         boolean visible = false;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public IssueViewHolder(@NonNull View itemView) {
             super(itemView);
             idTextView = itemView.findViewById(R.id.id);
             titleTextView = itemView.findViewById(R.id.title);
@@ -127,6 +117,12 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.MyVi
             fixTimeTextView.setText(fixTime);
             callBobVerifyTextView.setText(callBobVerify);
             studentVerifyTextView.setText(studentVerify);
+
+            itemView.setOnClickListener(
+                    view -> {
+                        open(issueClass.studentVerify);
+                    }
+            );
 
             btnVerify.setOnClickListener(
                     view -> confirm(issueClass, context)

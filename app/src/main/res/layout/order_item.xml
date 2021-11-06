@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="start"
+        android:orientation="vertical"
+        android:padding="5dp"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/orderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_0000" />
+
+        <TextView
+            android:id="@+id/shopView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#4d4d4d"
+            android:textStyle="bold"
+            android:text="Shop" />
+
+        <TextView
+            android:id="@+id/orderList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Shop" />
+
+        <!--<ListView
+            android:id="@+id/listViewOrder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true" />-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/orderDateStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="end"
+        android:orientation="vertical"
+        app:layout_constraintVertical_bias="0"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:text="12:30PM Oct, 12 2021" />
+
+        <TextView
+            android:id="@+id/statusView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingEnd="10dp"
+            android:text="@string/pending"
+            android:textColor="#F44336"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,4 +16,5 @@
     <string name="verify">Verify</string>
     <string name="title">Title</string>
     <string name="location">Location</string>
+    <string name="delivered">Delivered</string>
 </resources>

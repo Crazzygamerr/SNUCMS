@@ -18,6 +18,13 @@
         </activity>
         <activity android:name=".MainActivity"/>
         <activity android:name=".CallBob">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".Tuckshop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
