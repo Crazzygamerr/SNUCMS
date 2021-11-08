@@ -24,18 +24,14 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
     @NonNull
     @Override
     public SlotViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View v = LayoutInflater.from(context).inflate(R.layout.slot_item,parent,false);
-
         return new SlotViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SlotViewHolder holder, int position) {
-
         String s = arrayList.get(position);
         holder.textView.setText(s);
-
     }
 
     @Override

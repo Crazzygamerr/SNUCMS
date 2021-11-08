@@ -30,10 +30,10 @@ public class Tuckshop extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
         firebaseHelper.setOrderListener("0001");
 
-        FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
+        FloatingActionButton floatingActionButton = findViewById(R.id.fabOrder);
         floatingActionButton.setOnClickListener(
                 view -> {
-                    //startActivity(new Intent(Tuckshop.this, ));
+                    startActivity(new Intent(Tuckshop.this, AddOrder.class));
                 }
         );
     }

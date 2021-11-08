@@ -152,8 +152,8 @@ public class firebaseHelper {
         while(id.length() < 3)
             id = "0" + id;
         issue.id = date + id;
-        System.out.println(issue.id);
-        issue.documentReference = db.collection("callBob/"+rollno+"/issues").document(String.valueOf(temp));
+        //System.out.println(issue.id);
+        issue.documentReference = db.collection("callBob/"+rollno+"/issues").document(String.valueOf(issue.id));
         db.collection("callBob/"+rollno+"/issues")
                 .document(issue.id).set(issue);
     }
@@ -189,8 +189,26 @@ public class firebaseHelper {
         documentReference.update("studentVerify", true);
     }
 
-    public static void addOrder(OrderClass orderClass) {
-        db.collection("Tuckshop/"+orderClass.rollno+"/orders").add(orderClass).addOnSuccessListener(
+    public static void addOrder(OrderClass order) {
+        String date = Year.now().toString() + MonthDay.now().getMonthValue(),
+                day = String.valueOf(MonthDay.now().getDayOfMonth()),
+                id;
+        if(day.length() < 2)
+            day = "0" + day;
+        date = date + day;
+        int temp = 0;
+        for(OrderClass tempOrder : Tuckshop.allOrders) {
+            int temp1 = Integer.parseInt(tempOrder.id.substring(8));
+            temp = Math.max(temp, temp1);
+        }
+        temp++;
+        id = String.valueOf(temp);
+        while(id.length() < 3)
+            id = "0" + id;
+        order.id = date + id;
+        //System.out.println(issue.id);
+        order.documentReference = db.collection("Tuckshop/"+order.rollno+"/orders").document(String.valueOf(temp));
+        db.collection("Tuckshop/"+order.rollno+"/orders").document(order.id).set(order).addOnSuccessListener(
                 documentReference -> System.out.println("Success")
         );
     }
@@ -230,7 +248,7 @@ public class firebaseHelper {
         data.put("name", "test1");
         data.put("shop", "Navin tea");
         data.put("genTime", Timestamp.now());
-        data.put("pending", false);
+        data.put("delivered", false);
         data.put("order", new ArrayList<>(Arrays.asList("Paneer roll - 2","Cheese roll - 3")));
 
         OrderClass orderClass = OrderClass.fromMap(data);

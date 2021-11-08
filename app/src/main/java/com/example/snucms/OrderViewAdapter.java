@@ -5,9 +5,6 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -82,7 +79,7 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
             shopView.setText(orderClass.shop);
 
             dateView.setText((orderClass.genTime == null)?"":sfd.format(orderClass.genTime.toDate()));
-            if(orderClass.pending) {
+            if(orderClass.delivered) {
                 statusView.setText(R.string.delivered);
                 statusView.setTextColor(Color.GREEN);
             } else {

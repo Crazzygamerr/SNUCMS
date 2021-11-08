@@ -4,27 +4,26 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class OrderClass {
     public DocumentReference documentReference;
     public String id, name, rollno, shop;
     Timestamp genTime;
-    boolean pending;
+    boolean delivered;
     ArrayList<String> order;
 
     public OrderClass() {
     }
 
-    public OrderClass(DocumentReference documentReference, String id, String name, String rollno, String shop, Timestamp genTime, boolean pending, ArrayList<String> order) {
+    public OrderClass(DocumentReference documentReference, String id, String name, String rollno, String shop, Timestamp genTime, boolean delivered, ArrayList<String> order) {
         this.documentReference = documentReference;
         this.id = id;
         this.name = name;
         this.rollno = rollno;
         this.shop = shop;
         this.genTime = genTime;
-        this.pending = pending;
+        this.delivered = delivered;
         this.order = order;
     }
 
@@ -36,7 +35,7 @@ public class OrderClass {
                 (String) data.get("rollno"),
                 (String) data.get("shop"),
                 (Timestamp) data.get("genTime"),
-                (boolean) data.get("pending"),
+                (boolean) data.get("delivered"),
                 (ArrayList<String>) data.get("order")
         );
 
@@ -56,8 +55,8 @@ public class OrderClass {
         return genTime;
     }
 
-    public boolean isPending() {
-        return pending;
+    public boolean isDelivered() {
+        return delivered;
     }
 
     public ArrayList<String> getOrder() {
@@ -72,8 +71,8 @@ public class OrderClass {
         this.genTime = genTime;
     }
 
-    public void setPending(boolean pending) {
-        this.pending = pending;
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
     }
 
     public void setOrder(ArrayList<String> order) {
