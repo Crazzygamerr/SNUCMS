@@ -110,9 +110,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnCallBob = findViewById(R.id.btnCallBob);
         Button btnLibrary = findViewById(R.id.btnLibrary);
 
-        EditText editText = findViewById(R.id.editTextNumber);
-        EditText editName = findViewById(R.id.editTextTitle);
-
         /*RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
