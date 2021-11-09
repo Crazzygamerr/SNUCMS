@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotViewHolder> {
 
     Context context;
-    ArrayList<String> arrayList;
+    ArrayList<SlotClass> arrayList;
 
-    public SlotViewAdapter(Context context, ArrayList<String> arrayList) {
+    public SlotViewAdapter(Context context, ArrayList<SlotClass> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -30,8 +31,8 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
 
     @Override
     public void onBindViewHolder(@NonNull SlotViewHolder holder, int position) {
-        String s = arrayList.get(position);
-        holder.textView.setText(s);
+        SlotClass slotClass = arrayList.get(position);
+        holder.bind(slotClass, context);
     }
 
     @Override
@@ -41,11 +42,36 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
 
     public static class SlotViewHolder extends RecyclerView.ViewHolder{
 
-        TextView textView;
+        TextView slotTitle, textViewTotal, textViewRemaining, textViewBooked;
+        Button btnBookSlot;
 
         public SlotViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.title);
+            slotTitle = itemView.findViewById(R.id.slotTitle);
+            textViewTotal = itemView.findViewById(R.id.textViewTotal);
+            textViewRemaining = itemView.findViewById(R.id.textViewRemaining);
+            btnBookSlot = itemView.findViewById(R.id.btnBookSlot);
+            textViewBooked = itemView.findViewById(R.id.textViewBooked);
+        }
+
+        private void bind(SlotClass slotClass, Context context) {
+
+            slotTitle.setText(slotClass.slotName);
+
+            String s = "Total: " + slotClass.totalSlots;
+            textViewTotal.setText(s);
+
+            s = "Remaining: " + slotClass.remainingSlots;
+            textViewRemaining.setText(s);
+
+            if(slotClass.remainingSlots > 0 && !slotClass.rollno.contains("0001")) {
+                btnBookSlot.setOnClickListener(view -> {
+                    firebaseHelper.addSlot(slotClass, "test1", "0001");
+                });
+            } else {
+                btnBookSlot.setVisibility(View.GONE);
+                textViewBooked.setVisibility(View.VISIBLE);
+            }
         }
     }
 

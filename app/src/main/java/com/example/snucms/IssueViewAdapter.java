@@ -65,7 +65,7 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.Issu
         public IssueViewHolder(@NonNull View itemView) {
             super(itemView);
             idTextView = itemView.findViewById(R.id.id);
-            titleTextView = itemView.findViewById(R.id.title);
+            titleTextView = itemView.findViewById(R.id.slotTitle);
             descTextView = itemView.findViewById(R.id.desc);
 
             dateView = itemView.findViewById(R.id.dateView);

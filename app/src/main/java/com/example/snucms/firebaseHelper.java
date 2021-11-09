@@ -31,35 +31,38 @@ public class firebaseHelper {
         );
     }
 
-    public static void getSlots(String rollno) {
-        db.collection("ISC").get().addOnSuccessListener(
-                queryDocumentSnapshots -> {
-                    //System.out.println(queryDocumentSnapshots.size());
-                    //Map<String, Object> slot = Collections.emptyMap();
-                    ArrayList<SlotClass> allSlots = MainActivity.allSlots;
-                    DocumentSnapshot documentSnapshot;
-                    for(int i=0;i< queryDocumentSnapshots.size();i++) {
+    public static void setSlotListener(String rollno) {
+        db.collection("ISC").addSnapshotListener(
+                new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException error) {
+                        //System.out.println(queryDocumentSnapshots.size());
+                        //Map<String, Object> slot = Collections.emptyMap();
+                        ArrayList<SlotClass> allSlots = new ArrayList<>();
+                        DocumentSnapshot documentSnapshot;
+                        for (int i = 0; i < queryDocumentSnapshots.size(); i++) {
 
-                        documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
-                        SlotClass slot = documentSnapshot
-                                .toObject(SlotClass.class)
-                                .setSlot(documentSnapshot.getId());
-                        if(!slot.rollno.contains(rollno)) {
-                            allSlots.add(slot);
-                        } else {
-                            allSlots.clear();
-                            allSlots.add(slot);
-                            break;
+                            documentSnapshot = queryDocumentSnapshots.getDocuments().get(i);
+                            SlotClass slot = documentSnapshot
+                                    .toObject(SlotClass.class)
+                                    .setSlot(documentSnapshot.getId());
+                            if (!slot.rollno.contains(rollno)) {
+                                allSlots.add(slot);
+                            } else {
+                                allSlots.clear();
+                                allSlots.add(slot);
+                                break;
+                            }
                         }
-
+                        GymSlot.allSlots.clear();
+                        GymSlot.allSlots.addAll(allSlots);
+                        GymSlot.slotViewAdapter.notifyDataSetChanged();
                     }
-                    //System.out.println(allSlots.get(1));
                 }
         );
     }
 
     public static void addSlot(SlotClass slotClass, String name, String rollno) {
-        //slotClass.documentReference.set();
         slotClass.documentReference.update(
                 "names", FieldValue.arrayUnion(name),
                 "rollno", FieldValue.arrayUnion(rollno),
