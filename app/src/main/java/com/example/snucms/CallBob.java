@@ -56,9 +56,9 @@ public class CallBob extends AppCompatActivity {
         editTextTitle = view.findViewById(R.id.editTextTitle);
         editTextDesc = view.findViewById(R.id.editTextDesc);
         editTextLocation = view.findViewById(R.id.editTextLocation);
-        builder.setPositiveButton("Yes", null);
+        builder.setPositiveButton("Submit", null);
         builder.setNegativeButton(
-                "No",
+                "Cancel",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

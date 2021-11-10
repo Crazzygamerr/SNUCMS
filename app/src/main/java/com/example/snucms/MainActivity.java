@@ -110,13 +110,6 @@ public class MainActivity extends AppCompatActivity {
         Button btnCallBob = findViewById(R.id.btnCallBob);
         Button btnLibrary = findViewById(R.id.btnLibrary);
 
-        /*RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-
-        SlotViewAdapter myAdapter = new SlotViewAdapter(this, new ArrayList<>(Arrays.asList("test1", "test2", "test3")));
-        recyclerView.setAdapter(myAdapter);
-*/
         /*btnTimetable.setOnClickListener(
                 view -> startActivity(new Intent(MainActivity.this, .class));
         );*/
@@ -133,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
                 view -> startActivity(new Intent(MainActivity.this, CallBob.class))
         );
 
-        /*btnLibrary.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, .class))
-        );*/
+        btnLibrary.setOnClickListener(
+                view -> startActivity(new Intent(MainActivity.this, Library.class))
+        );
 
     }
 }

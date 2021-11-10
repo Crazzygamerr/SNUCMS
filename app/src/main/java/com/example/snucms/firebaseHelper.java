@@ -19,7 +19,7 @@ import java.util.*;
 public class firebaseHelper {
     public static  FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public static void addLibraryEntry(String name, String netid, long rollno, int token) {
+    public static void addLibraryEntry(String name, String netid, String rollno, int token) {
         Map<String, Object> entry = new HashMap<>();
         entry.put("token", token);
         entry.put("name", name);

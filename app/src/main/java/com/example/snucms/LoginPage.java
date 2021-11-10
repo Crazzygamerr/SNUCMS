@@ -25,18 +25,13 @@ public class LoginPage extends AppCompatActivity {
 
         MaterialButton loginbtn = findViewById(R.id.loginbtn);
 
-        //admin and admin
-
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this, MainActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(LoginPage.this, MainActivity.class));
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-                    //correct
-
+                    
                 }else
-                    //incorrect
                     Toast.makeText(LoginPage.this,"LOGIN FAILED !!!",Toast.LENGTH_SHORT).show();
             }
         });
