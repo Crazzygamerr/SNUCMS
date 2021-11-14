@@ -1,6 +1,7 @@
 package com.example.snucms;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +65,9 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
             s = "Remaining: " + slotClass.remainingSlots;
             textViewRemaining.setText(s);
 
-            if(slotClass.remainingSlots > 0 && !slotClass.rollno.contains("0001")) {
+            if(slotClass.remainingSlots > 0 && !slotClass.rollno.contains(firebaseHelper.rollno)) {
                 btnBookSlot.setOnClickListener(view -> {
-                    firebaseHelper.addSlot(slotClass, "test1", "0001");
+                    firebaseHelper.addSlot(slotClass);
                 });
             } else {
                 btnBookSlot.setVisibility(View.GONE);

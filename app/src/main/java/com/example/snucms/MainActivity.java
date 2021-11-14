@@ -2,7 +2,9 @@ package com.example.snucms;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -97,7 +99,10 @@ Both are displayed seperately per user
 
 public class MainActivity extends AppCompatActivity {
 
-    //public static ArrayList<SlotClass> allSlots = new ArrayList<>();
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnTuckshop = findViewById(R.id.btnTuckshop);
         Button btnCallBob = findViewById(R.id.btnCallBob);
         Button btnLibrary = findViewById(R.id.btnLibrary);
+        Button btnLogout = findViewById(R.id.btnLogout);
 
         /*btnTimetable.setOnClickListener(
                 view -> startActivity(new Intent(MainActivity.this, .class));
@@ -129,6 +135,14 @@ public class MainActivity extends AppCompatActivity {
         btnLibrary.setOnClickListener(
                 view -> startActivity(new Intent(MainActivity.this, Library.class))
         );
+
+        btnLogout.setOnClickListener(view -> {
+            SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.pref_file_key), Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.clear();
+            editor.apply();
+            startActivity(new Intent(MainActivity.this, LoginPage.class));
+        });
 
     }
 }

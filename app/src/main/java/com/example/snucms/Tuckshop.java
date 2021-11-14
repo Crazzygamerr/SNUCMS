@@ -1,6 +1,8 @@
 package com.example.snucms;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
@@ -28,7 +30,7 @@ public class Tuckshop extends AppCompatActivity {
 
         myAdapter = new OrderViewAdapter(this, allOrders);
         recyclerView.setAdapter(myAdapter);
-        firebaseHelper.setOrderListener("0001");
+        firebaseHelper.setOrderListener();
 
         FloatingActionButton floatingActionButton = findViewById(R.id.fabOrder);
         floatingActionButton.setOnClickListener(

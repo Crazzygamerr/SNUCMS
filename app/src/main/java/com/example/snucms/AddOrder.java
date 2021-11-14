@@ -87,8 +87,6 @@ public class AddOrder extends AppCompatActivity {
 
         btnPlaceOrder.setOnClickListener(view -> {
             OrderClass orderClass = new OrderClass();
-            orderClass.name = "test1";
-            orderClass.rollno = "0001";
             orderClass.shop = currentShop;
             orderClass.genTime = Timestamp.now();
             orderClass.delivered = false;

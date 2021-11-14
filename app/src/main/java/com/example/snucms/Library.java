@@ -1,6 +1,8 @@
 package com.example.snucms;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -43,6 +45,15 @@ public class Library extends AppCompatActivity {
         editTextToken = findViewById(R.id.editTextToken);
         Button btnAddEntry = findViewById(R.id.btnAddEntry);
 
+        TextView studentName, studentRoll, studentNetId;
+        studentName = findViewById(R.id.studentName);
+        studentRoll = findViewById(R.id.studentRoll);
+        studentNetId = findViewById(R.id.studentNetId);
+
+        studentName.setText(firebaseHelper.name);
+        studentRoll.setText(firebaseHelper.rollno);
+        studentNetId.setText(firebaseHelper.netid);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(Library.this, new String[]{Manifest.permission.CAMERA}, 100);
         }
@@ -52,8 +63,6 @@ public class Library extends AppCompatActivity {
         barcodeView.decodeContinuous(new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
-                /*cameraStatus.setVisibility(View.VISIBLE);
-                cameraStatus.setText("");*/
                 System.out.println("-----------"+result.getResult().toString());
                 if(result.getResult().toString().equals("garbage value")) {
                     imageNotVerified.setVisibility(View.GONE);
@@ -72,12 +81,7 @@ public class Library extends AppCompatActivity {
             } else if(!isVerified) {
                 Toast.makeText(this, "User is not verified", Toast.LENGTH_SHORT).show();
             } else {
-                firebaseHelper.addLibraryEntry(
-                        "test1",
-                        "tt123",
-                        "0001",
-                        Integer.parseInt(editTextToken.getText().toString())
-                );
+                firebaseHelper.addLibraryEntry(Integer.parseInt(editTextToken.getText().toString()));
                 finish();
             }
         });

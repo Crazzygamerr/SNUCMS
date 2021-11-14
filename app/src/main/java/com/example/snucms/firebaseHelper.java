@@ -1,5 +1,8 @@
 package com.example.snucms;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,8 +21,9 @@ import java.util.*;
 
 public class firebaseHelper {
     public static  FirebaseFirestore db = FirebaseFirestore.getInstance();
+    static String name, rollno, netid;
 
-    public static void addLibraryEntry(String name, String netid, String rollno, int token) {
+    public static void addLibraryEntry(int token) {
         Map<String, Object> entry = new HashMap<>();
         entry.put("token", token);
         entry.put("name", name);
@@ -31,7 +35,7 @@ public class firebaseHelper {
         );
     }
 
-    public static void setSlotListener(String rollno) {
+    public static void setSlotListener() {
         db.collection("ISC").addSnapshotListener(
                 new EventListener<QuerySnapshot>() {
                     @Override
@@ -62,7 +66,7 @@ public class firebaseHelper {
         );
     }
 
-    public static void addSlot(SlotClass slotClass, String name, String rollno) {
+    public static void addSlot(SlotClass slotClass) {
         slotClass.documentReference.update(
                 "names", FieldValue.arrayUnion(name),
                 "rollno", FieldValue.arrayUnion(rollno),
@@ -93,7 +97,7 @@ public class firebaseHelper {
         slotClass.documentReference.set(slotClass);
     }
 
-    public static void setIssueListener(String rollno) {
+    public static void setIssueListener() {
         db.collection("callBob/"+rollno+"/issues").orderBy("genTime", Query.Direction.DESCENDING).addSnapshotListener(
                 new EventListener<QuerySnapshot>() {
                     @Override
@@ -117,7 +121,7 @@ public class firebaseHelper {
         );
     }
 
-    public static void getIssues(String rollno) {
+    public static void getIssues() {
         db.collection("callBob/"+rollno+"/issues").get().addOnSuccessListener(
                 new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -138,7 +142,7 @@ public class firebaseHelper {
         );
     }
 
-    public static void addIssue(IssueClass issue, String rollno) {
+    public static void addIssue(IssueClass issue) {
         String date = Year.now().toString() + MonthDay.now().getMonthValue(),
                 day = String.valueOf(MonthDay.now().getDayOfMonth()),
                 id;
@@ -210,13 +214,15 @@ public class firebaseHelper {
             id = "0" + id;
         order.id = date + id;
         //System.out.println(issue.id);
+        order.name = name;
+        order.rollno = rollno;
         order.documentReference = db.collection("Tuckshop/"+order.rollno+"/orders").document(String.valueOf(temp));
         db.collection("Tuckshop/"+order.rollno+"/orders").document(order.id).set(order).addOnSuccessListener(
                 documentReference -> System.out.println("Success")
         );
     }
 
-    public static void setOrderListener(String rollno) {
+    public static void setOrderListener() {
         db.collection("Tuckshop/"+rollno+"/orders").orderBy("genTime", Query.Direction.DESCENDING).addSnapshotListener(
                 new EventListener<QuerySnapshot>() {
                     @Override

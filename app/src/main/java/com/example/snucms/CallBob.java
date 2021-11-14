@@ -3,6 +3,7 @@ package com.example.snucms;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -37,7 +38,7 @@ public class CallBob extends AppCompatActivity {
 
         myAdapter = new IssueViewAdapter(this, allIssues);
         recyclerView.setAdapter(myAdapter);
-        firebaseHelper.setIssueListener("0001");
+        firebaseHelper.setIssueListener();
 
         FloatingActionButton floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(
@@ -76,10 +77,6 @@ public class CallBob extends AppCompatActivity {
                         String title = editTextTitle.getText().toString(),
                                 desc = editTextDesc.getText().toString(),
                                 location = editTextLocation.getText().toString();
-                        /*boolean tb = title.trim().equals(""),
-                                db = desc.trim().equals(""),
-                                lb = location.trim().equals("");
-                        System.out.println(tb + "" + db + lb);*/
                         if(title.trim().equals("")){
                             editTextTitle.setError("Title cannot empty");
                         } else if(desc.trim().equals("")) {
@@ -92,7 +89,7 @@ public class CallBob extends AppCompatActivity {
                             issueClass.title = title;
                             issueClass.description = desc;
                             issueClass.location = location;
-                            firebaseHelper.addIssue(issueClass, "0001");
+                            firebaseHelper.addIssue(issueClass);
                             alertDialog.dismiss();
                         }
                     }
