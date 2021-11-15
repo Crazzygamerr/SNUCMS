@@ -1,8 +1,6 @@
-package com.example.snucms;
+package com.example.snucms.activities;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -19,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.snucms.R;
+import com.example.snucms.firebaseHelper;
 import com.google.zxing.ResultPoint;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;

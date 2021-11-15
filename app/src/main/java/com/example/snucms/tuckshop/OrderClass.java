@@ -1,4 +1,4 @@
-package com.example.snucms;
+package com.example.snucms.tuckshop;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
@@ -9,9 +9,9 @@ import java.util.Map;
 public class OrderClass {
     public DocumentReference documentReference;
     public String id, name, rollno, shop;
-    Timestamp genTime;
-    boolean delivered;
-    ArrayList<String> order;
+    public Timestamp genTime;
+    public boolean delivered;
+    public ArrayList<String> order;
 
     public OrderClass() {
     }

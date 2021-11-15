@@ -1,18 +1,16 @@
-package com.example.snucms;
+package com.example.snucms.gymslot;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.ArraySet;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.snucms.R;
+import com.example.snucms.firebaseHelper;
+
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 public class GymSlot extends AppCompatActivity {
 

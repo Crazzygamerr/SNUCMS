@@ -1,10 +1,13 @@
 package com.example.snucms;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-
 import androidx.annotation.Nullable;
 
+import com.example.snucms.callbob.CallBob;
+import com.example.snucms.gymslot.GymSlot;
+import com.example.snucms.gymslot.SlotClass;
+import com.example.snucms.tuckshop.OrderClass;
+import com.example.snucms.tuckshop.Tuckshop;
+import com.example.snucms.callbob.IssueClass;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
@@ -21,7 +24,7 @@ import java.util.*;
 
 public class firebaseHelper {
     public static  FirebaseFirestore db = FirebaseFirestore.getInstance();
-    static String name, rollno, netid;
+    public static String name, rollno, netid;
 
     public static void addLibraryEntry(int token) {
         Map<String, Object> entry = new HashMap<>();

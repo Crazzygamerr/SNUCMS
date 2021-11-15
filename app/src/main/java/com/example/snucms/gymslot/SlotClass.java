@@ -1,8 +1,6 @@
-package com.example.snucms;
+package com.example.snucms.gymslot;
 
-import com.google.firebase.firestore.DocumentId;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 

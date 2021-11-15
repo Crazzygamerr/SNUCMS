@@ -1,4 +1,4 @@
-package com.example.snucms;
+package com.example.snucms.tuckshop;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.snucms.R;
+import com.example.snucms.firebaseHelper;
 import com.google.firebase.Timestamp;
 
 import java.util.ArrayList;
@@ -33,8 +35,6 @@ public class AddOrder extends AppCompatActivity {
 
     HashMap<String, Integer> orders = new HashMap<>();
 
-//    Spinner spinnerItem, spinnerRemoveItem;
-//    ArrayAdapter<String> itemAdapter, removeAdapter;
     ItemViewAdapter itemViewAdapter;
 
     @Override
@@ -100,85 +100,4 @@ public class AddOrder extends AppCompatActivity {
         btnCancel.setOnClickListener(view -> finish());
     }
 
-    /*@Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_order);
-
-        TextView textViewOrders = findViewById(R.id.textViewOrders);
-
-        Spinner spinnerShop = findViewById(R.id.spinnerShop);
-        ArrayAdapter<String> adapter = new ArrayAdapter(
-                this,
-                android.R.layout.simple_spinner_dropdown_item,
-                shops.toArray()
-        );
-        spinnerShop.setAdapter(adapter);
-        spinnerShop.setSelection(0);
-        currentShop = spinnerShop.getSelectedItem().toString();
-        spinnerShop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                if(!shops.get(pos).equals(currentShop)) {
-                    itemAdapter.clear();
-                    itemAdapter.addAll(items[pos]);
-                    removeAdapter.clear();
-                    orders.clear();
-                    orderString = "";
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        spinnerItem = findViewById(R.id.spinnerItem);
-        itemAdapter = new ArrayAdapter(
-                this,
-                android.R.layout.simple_spinner_dropdown_item,
-                items[shops.indexOf(currentShop)]
-        );
-        spinnerItem.setAdapter(itemAdapter);
-        spinnerItem.setSelection(0);
-
-        NumberPicker numberPicker = findViewById(R.id.numberPicker);
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(10);
-
-        Button btnAddItem = findViewById(R.id.btnAddItem);
-        btnAddItem.setOnClickListener(view -> {
-            orders.put(spinnerItem.getSelectedItem().toString(), numberPicker.getValue());
-            setOrderString();
-            textViewOrders.setText(orderString);
-            removeAdapter.addAll(orders.keySet());
-        });
-
-        spinnerRemoveItem = findViewById(R.id.spinnerRemoveItem);
-        removeAdapter = new ArrayAdapter(
-                this,
-                android.R.layout.simple_spinner_dropdown_item,
-                orders.keySet().toArray()
-        );
-        spinnerRemoveItem.setAdapter(removeAdapter);
-
-        Button btnRemoveItem = findViewById(R.id.btnRemoveItem);
-        btnRemoveItem.setOnClickListener(view -> {
-            orders.remove(spinnerRemoveItem.getSelectedItem().toString());
-            setOrderString();
-            textViewOrders.setText(orderString);
-        });
-
-    }
-
-    void setOrderString() {
-        orderString = "";
-        orders.forEach(new BiConsumer<String, Integer>() {
-            @Override
-            public void accept(String s, Integer integer) {
-                orderString = orderString + s + " - " + integer.toString() + "\n";
-            }
-        });
-    }*/
 }

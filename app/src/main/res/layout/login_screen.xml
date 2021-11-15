@@ -6,7 +6,7 @@
     android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/mello"
-    tools:context=".LoginPage">
+    tools:context=".activities.LoginPage">
 
   <TextView
       android:id="@+id/SNUCMS"

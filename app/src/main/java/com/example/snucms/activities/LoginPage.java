@@ -1,4 +1,4 @@
-package com.example.snucms;
+package com.example.snucms.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.snucms.R;
+import com.example.snucms.firebaseHelper;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.HashMap;

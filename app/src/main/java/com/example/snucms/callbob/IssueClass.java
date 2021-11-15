@@ -1,9 +1,8 @@
-package com.example.snucms;
+package com.example.snucms.callbob;
 
 import com.google.firebase.firestore.DocumentReference;
 
 import com.google.firebase.Timestamp;
-import com.google.type.DateTime;
 
 import java.util.Map;
 
@@ -11,8 +10,8 @@ public class IssueClass {
 
     public DocumentReference documentReference;
     public String id, title, description, location;
-    Timestamp genTime, fixTime;
-    boolean ack, studentVerify, callBobVerify;
+    public Timestamp genTime, fixTime;
+    public boolean ack, studentVerify, callBobVerify;
 
     public IssueClass() {
         fixTime = null;
