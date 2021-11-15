@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.example.snucms.R;
 import com.example.snucms.callbob.CallBob;
 import com.example.snucms.gymslot.GymSlot;
+import com.example.snucms.timetable.CalendarMainActivity;
 import com.example.snucms.tuckshop.Tuckshop;
 
 /*
@@ -119,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
         Button btnLibrary = findViewById(R.id.btnLibrary);
         Button btnLogout = findViewById(R.id.btnLogout);
 
-        /*btnTimetable.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, .class));
-        );*/
+        btnTimetable.setOnClickListener(
+                view -> startActivity(new Intent(MainActivity.this, CalendarMainActivity.class))
+        );
 
         btnGymSLot.setOnClickListener(
                 view -> MainActivity.this.startActivity(new Intent(MainActivity.this, GymSlot.class))

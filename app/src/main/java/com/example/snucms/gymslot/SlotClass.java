@@ -13,7 +13,7 @@ public class SlotClass {
     SlotClass() {
     }
 
-    SlotClass(DocumentReference documentReference, String slotName, String timing, int totalSlots, int remainingSlots, ArrayList<String> names, ArrayList<String> rollno) {
+    public SlotClass(DocumentReference documentReference, String slotName, String timing, int totalSlots, int remainingSlots, ArrayList<String> names, ArrayList<String> rollno) {
         this.documentReference = documentReference;
         this.slotName = slotName;
         this.timing = timing;
