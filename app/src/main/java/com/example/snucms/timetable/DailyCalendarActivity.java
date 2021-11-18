@@ -75,6 +75,8 @@ public class DailyCalendarActivity extends AppCompatActivity
         return list;
     }
 
+
+
     public void previousDayAction(View view)
     {
         selectedDate = selectedDate.minusDays(1);

@@ -1,5 +1,6 @@
 package com.example.snucms.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -7,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 
 import com.example.snucms.R;
 import com.example.snucms.callbob.CallBob;
@@ -112,12 +115,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
-        Button btnTimetable = findViewById(R.id.btnTimetable);
-        Button btnGymSLot = findViewById(R.id.btnGymSlot);
-        Button btnTuckshop = findViewById(R.id.btnTuckshop);
-        Button btnCallBob = findViewById(R.id.btnCallBob);
-        Button btnLibrary = findViewById(R.id.btnLibrary);
+        RelativeLayout btnTimetable = findViewById(R.id.btnTimetable);
+        RelativeLayout btnGymSLot = findViewById(R.id.btnGymSlot);
+        RelativeLayout btnTuckshop = findViewById(R.id.btnTuckshop);
+        RelativeLayout btnCallBob = findViewById(R.id.btnCallBob);
+        RelativeLayout btnLibrary = findViewById(R.id.btnLibrary);
         Button btnLogout = findViewById(R.id.btnLogout);
 
         btnTimetable.setOnClickListener(

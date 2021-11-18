@@ -18,9 +18,10 @@
     <string name="location">Location</string>
     <string name="delivered">Delivered</string>
     <string name="pref_file_key">com.example.snucms.studentinfo</string>
-    <string name="back"><![CDATA[<-]]></string>
-    <string name="forward"><![CDATA[->]]></string>
+    <string name="back"><![CDATA[<]]></string>
+    <string name="forward"><![CDATA[>]]></string>
     <string name="weekly">Weekly</string>
     <string name="Save">Save</string>
+    <string name="log_out">Log Out</string>
 
 </resources>

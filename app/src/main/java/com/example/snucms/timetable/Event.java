@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/*
+App specific files - Json
+Last option - Shared preferences
+ */
+
 public class Event
 {
     public static ArrayList<Event> eventsList = new ArrayList<>();

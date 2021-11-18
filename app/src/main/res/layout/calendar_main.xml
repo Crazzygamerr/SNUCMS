@@ -33,7 +33,7 @@
             android:layout_weight="1"
             android:text="@string/back"
             android:textColor="@color/white"
-            android:background="@null"
+            android:background="@color/black"
             android:textStyle="bold"
             android:onClick="previousMonthAction"
             android:textSize="20sp"/>
@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:text="@string/forward"
             android:textColor="@color/white"
-            android:background="@null"
+            android:background="@color/black"
             android:textStyle="bold"
             android:onClick="nextMonthAction"
             android:textSize="20sp"/>
@@ -136,7 +136,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
 

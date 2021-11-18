@@ -29,15 +29,12 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_main);
-        initWidgets();
-        CalendarUtils.selectedDate = LocalDate.now();
-        setMonthView();
-    }
 
-    private void initWidgets()
-    {
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
+
+        CalendarUtils.selectedDate = LocalDate.now();
+        setMonthView();
     }
 
     private void setMonthView()
