@@ -1,10 +1,5 @@
 package com.example.snucms.timetable;
 
-import static com.example.snucms.timetable.CalendarUtils.daysInWeekArray;
-import static com.example.snucms.timetable.CalendarUtils.monthYearFromDate;
-import static com.example.snucms.timetable.CalendarUtils.daysInWeekArray;
-import static com.example.snucms.timetable.CalendarUtils.monthYearFromDate;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,8 +36,8 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     private void setWeekView()
     {
-        monthYearText.setText(monthYearFromDate(com.example.snucms.timetable.CalendarUtils.selectedDate));
-        ArrayList<LocalDate> days = daysInWeekArray(com.example.snucms.timetable.CalendarUtils.selectedDate);
+        monthYearText.setText(CalendarUtils.monthYearFromDate(CalendarUtils.selectedDate));
+        ArrayList<LocalDate> days = CalendarUtils.daysInWeekArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
@@ -54,20 +49,20 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     public void previousWeekAction(View view)
     {
-        com.example.snucms.timetable.CalendarUtils.selectedDate = com.example.snucms.timetable.CalendarUtils.selectedDate.minusWeeks(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
         setWeekView();
     }
 
     public void nextWeekAction(View view)
     {
-        com.example.snucms.timetable.CalendarUtils.selectedDate = com.example.snucms.timetable.CalendarUtils.selectedDate.plusWeeks(1);
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
         setWeekView();
     }
 
     @Override
     public void onItemClick(int position, LocalDate date)
     {
-        com.example.snucms.timetable.CalendarUtils.selectedDate = date;
+        CalendarUtils.selectedDate = date;
         setWeekView();
     }
 
@@ -80,8 +75,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     private void setEventAdpater()
     {
-        ArrayList<Event> dailyEvents = Event.eventsForDate(com.example.snucms.timetable.CalendarUtils.selectedDate);
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), CalendarUtils.eventsList);
         eventListView.setAdapter(eventAdapter);
     }
 
