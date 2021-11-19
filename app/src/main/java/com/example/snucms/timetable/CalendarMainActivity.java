@@ -1,8 +1,5 @@
 package com.example.snucms.timetable;
 
-import static com.example.snucms.timetable.CalendarUtils.daysInMonthArray;
-import static com.example.snucms.timetable.CalendarUtils.monthYearFromDate;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -39,8 +36,8 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
 
     private void setMonthView()
     {
-        monthYearText.setText(monthYearFromDate(CalendarUtils.selectedDate));
-        ArrayList<LocalDate> daysInMonth = daysInMonthArray(CalendarUtils.selectedDate);
+        monthYearText.setText(CalendarUtils.monthYearFromDate(CalendarUtils.selectedDate));
+        ArrayList<LocalDate> daysInMonth = CalendarUtils.daysInMonthArray(CalendarUtils.selectedDate);
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
@@ -70,8 +67,7 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
         }
     }
 
-    public void weeklyAction(View view)
-    {
+    public void weeklyAction(View view) {
         startActivity(new Intent(CalendarMainActivity.this, WeekViewActivity.class));
     }
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class CalendarUtils
 {
     public static LocalDate selectedDate;
+    public static ArrayList<Event> eventsList = new ArrayList<>();
 
     public static String formattedDate(LocalDate date)
     {
@@ -19,7 +20,7 @@ public class CalendarUtils
 
     public static String formattedTime(LocalTime time)
     {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         return time.format(formatter);
     }
 

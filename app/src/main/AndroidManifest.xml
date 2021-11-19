@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SNUCMS">
-        <activity android:name=".activities.LoginPage">
+        <activity android:name=".activities.LoginPage"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,27 +35,10 @@
         <activity android:name=".tuckshop.AddOrder"/>
         <activity android:name=".gymslot.GymSlot"/>
         <activity android:name=".activities.Library"/>
-
         <activity android:name=".timetable.WeekViewActivity"/>
-        <activity android:name=".timetable.DailyCalendarActivity"
-            android:exported="true"
-            />
-
+        <activity android:name=".timetable.DailyCalendarActivity"/>
         <activity android:name=".timetable.EventEditActivity"/>
-        <activity android:name=".timetable.CalendarMainActivity">
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-
-
+        <activity android:name=".timetable.CalendarMainActivity"/>
     </application>
-
 </manifest>
 

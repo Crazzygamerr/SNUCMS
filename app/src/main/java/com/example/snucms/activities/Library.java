@@ -63,7 +63,7 @@ public class Library extends AppCompatActivity {
         barcodeView.decodeContinuous(new BarcodeCallback() {
             @Override
             public void barcodeResult(BarcodeResult result) {
-                System.out.println("-----------"+result.getResult().toString());
+                //System.out.println("-----------"+result.getResult().toString());
                 if(result.getResult().toString().equals("garbage value")) {
                     imageNotVerified.setVisibility(View.GONE);
                     imageVerified.setVisibility(View.VISIBLE);
