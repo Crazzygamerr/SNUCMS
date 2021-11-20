@@ -77,23 +77,31 @@ public class firebaseHelper {
         );
     }
 
+    public static void removeSlot(SlotClass slotClass) {
+        slotClass.documentReference.update(
+                "names", FieldValue.arrayRemove(name),
+                "rollno", FieldValue.arrayRemove(rollno),
+                "remainingSlots", FieldValue.increment(1)
+        );
+    }
+
     public static void populateSlots() {
         SlotClass slotClass = new SlotClass(
-                db.collection("ISC").document("MWF 7AM"),
+                db.collection("ISC").document("TTS 5PM"),
                 "Gym slot",
-                "MWF 7AM",
-                10,
-                9,
+                "TTS 6PM",
+                15,
+                12,
                 new ArrayList<>(
                         Arrays.asList(
-                                "test3",
-                                "test4"
+                                "test7",
+                                "test8"
                         )
                 ),
                 new ArrayList<>(
                         Arrays.asList(
-                                "0005",
-                                "0006"
+                                "0007",
+                                "0008"
                         )
                 )
         );
