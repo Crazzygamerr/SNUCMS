@@ -25,23 +25,19 @@ public class HourAdapter extends ArrayAdapter<HourEvent>
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
+    public View getView(int position, @Nullable View itemView, @NonNull ViewGroup parent)
     {
         HourEvent event = getItem(position);
 
-        if (convertView == null)
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.hour_cell, parent, false);
+        if (itemView == null)
+            itemView = LayoutInflater.from(getContext()).inflate(R.layout.hour_cell, parent, false);
 
-        setHour(convertView, event.time);
-        setEvents(convertView, event.events);
+        TextView timeTV = itemView.findViewById(R.id.timeTV);
+        timeTV.setText(CalendarUtils.formattedShortTime(event.time));
 
-        return convertView;
-    }
+        setEvents(itemView, event.events);
 
-    private void setHour(View convertView, LocalTime time)
-    {
-        TextView timeTV = convertView.findViewById(R.id.timeTV);
-        timeTV.setText(CalendarUtils.formattedShortTime(time));
+        return itemView;
     }
 
     private void setEvents(View convertView, ArrayList<Event> events)

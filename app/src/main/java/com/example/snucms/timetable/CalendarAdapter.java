@@ -86,7 +86,6 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewH
         public void onClick(View view)
         {
             onItemListener.onItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
-            System.out.println("------- onClick");
         }
     }
 }

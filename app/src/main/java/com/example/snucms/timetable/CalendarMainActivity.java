@@ -62,13 +62,14 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
     {
         if(date != null)
         {
-            CalendarUtils.selectedDate = date;
-            setMonthView();
+            //System.out.println("---------");
+            if(CalendarUtils.selectedDate.equals(date))
+                startActivity(new Intent(CalendarMainActivity.this, WeekViewActivity.class));
+            else {
+                CalendarUtils.selectedDate = date;
+                setMonthView();
+            }
         }
-    }
-
-    public void weeklyAction(View view) {
-        startActivity(new Intent(CalendarMainActivity.this, WeekViewActivity.class));
     }
 
     public void addEvent(View view) {

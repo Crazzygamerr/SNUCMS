@@ -56,6 +56,4 @@ public class EventAdapter extends ArrayAdapter<com.example.snucms.timetable.Even
             return new Space(context);
     }
 
-
-
 }

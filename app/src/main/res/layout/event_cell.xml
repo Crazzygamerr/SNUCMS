@@ -7,11 +7,11 @@
     android:layout_height="60dp">
 
     <TextView
+        android:id="@+id/eventCellTV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="left|center"
         android:paddingStart="10dp"
-        android:id="@+id/eventCellTV"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:text="Event"/>
