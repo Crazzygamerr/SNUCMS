@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +14,7 @@ import com.example.snucms.R;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
+class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>
 {
     private final ArrayList<LocalDate> days;
     private final OnItemListener onItemListener;
@@ -59,8 +60,33 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
         return days.size();
     }
 
-    public interface  OnItemListener
+    public interface OnItemListener
     {
         void onItemClick(int position, LocalDate date);
+    }
+
+    static class CalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
+        private final ArrayList<LocalDate> days;
+        public final View parentView;
+        public final TextView dayOfMonth;
+        private final CalendarAdapter.OnItemListener onItemListener;
+
+        public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.OnItemListener onItemListener, ArrayList<LocalDate> days)
+        {
+            super(itemView);
+            parentView = itemView.findViewById(R.id.parentView);
+            dayOfMonth = itemView.findViewById(R.id.cellDayText);
+            this.onItemListener = onItemListener;
+            this.days = days;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view)
+        {
+            onItemListener.onItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
+            System.out.println("------- onClick");
+        }
     }
 }

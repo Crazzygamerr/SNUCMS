@@ -70,6 +70,10 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
     public void weeklyAction(View view) {
         startActivity(new Intent(CalendarMainActivity.this, WeekViewActivity.class));
     }
+
+    public void addEvent(View view) {
+        startActivity(new Intent(this, EventEditActivity.class));
+    }
 }
 
 
