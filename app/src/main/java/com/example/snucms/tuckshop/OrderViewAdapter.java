@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.snucms.R;
@@ -46,7 +47,7 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
 
         TextView orderId, shopView, dateView, statusView, orderList;
-        //LinearLayout linearLayout;
+        boolean visible = false;
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,7 +57,6 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
             dateView = itemView.findViewById(R.id.dateView);
             statusView = itemView.findViewById(R.id.statusView);
             orderList = itemView.findViewById(R.id.orderList);
-            //linearLayout = itemView.findViewById(R.id.linearLayoutOrder);
 
         }
 
@@ -64,15 +64,6 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
             SimpleDateFormat sfd = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
             orderId.setText(orderClass.id);
-            /*ArrayAdapter<String> arr = new ArrayAdapter<>(
-                    context,
-                    R.layout.order_item,
-                    (orderClass.order == null)?new ArrayList<>():orderClass.order
-            );*/
-            /*for(int i=0;i<orderClass.order.size();i++){
-                View v = context.getLayoutInflater().inflate(R.layout.order_list_item);
-                linearLayout.addView(v);
-            }*/
             String temp = "";
             for(int i=0;i<orderClass.order.size();i++){
                 temp = temp + orderClass.order.get(i) + "\n";
@@ -88,6 +79,11 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
                 statusView.setText(R.string.pending);
                 statusView.setTextColor(Color.RED);
             }
+
+            itemView.setOnClickListener(view -> {
+                visible = !visible;
+                orderList.setVisibility((visible)?View.VISIBLE:View.GONE);
+            });
         }
 
     }
