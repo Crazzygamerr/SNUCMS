@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class EventEditActivity extends AppCompatActivity
     private EditText eventNameET;
     private TextView eventDateTV, eventTimeTV;
     private SwitchMaterial repeatSwitch;
+    private Button btnRemoveEvent;
 
     int mYear, mMonth, mDay, mHour, mMinute, pos;
     boolean repeat = false;
@@ -43,6 +45,7 @@ public class EventEditActivity extends AppCompatActivity
         eventDateTV = findViewById(R.id.eventDateTV);
         eventTimeTV = findViewById(R.id.eventTimeTV);
         repeatSwitch = findViewById(R.id.repeatSwitch);
+        btnRemoveEvent = findViewById(R.id.btnRemoveEvent);
 
         repeatSwitch.setOnCheckedChangeListener((compoundButton, b) -> repeat = b);
 
@@ -66,6 +69,8 @@ public class EventEditActivity extends AppCompatActivity
             mDay = CalendarUtils.selectedDate.getDayOfMonth();
             mHour = LocalTime.now().getHour();
             mMinute = LocalTime.now().getMinute();
+
+            btnRemoveEvent.setVisibility(View.GONE);
         }
 
         eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));

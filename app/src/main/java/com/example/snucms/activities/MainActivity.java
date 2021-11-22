@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         //super.onBackPressed();
     }
 
-    ConstraintLayout btnTimetable, btnGymSLot, btnTuckshop, btnCallBob, btnLibrary, btnLogout;
+    RelativeLayout btnTimetable, btnGymSLot, btnTuckshop, btnCallBob, btnLibrary, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
