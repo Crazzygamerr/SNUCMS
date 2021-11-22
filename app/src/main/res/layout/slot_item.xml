@@ -5,6 +5,7 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/tuckshop_2_border"
     android:padding="10dp">
 
 
@@ -14,7 +15,7 @@
       android:layout_height="wrap_content"
       android:text="Medium Text"
       android:textAppearance="?android:attr/textAppearanceMedium"
-      android:textColor="#4d4d4d"
+      android:textColor="@color/white"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +26,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Total: "
+      android:textColor="@color/white"
       android:layout_marginTop="10dp"
       app:layout_constraintTop_toBottomOf="@id/slotTitle"
       app:layout_constraintBottom_toBottomOf="parent"
@@ -36,6 +38,7 @@
       android:layout_height="wrap_content"
       android:layout_marginEnd="30dp"
       android:text="Remaining: "
+      android:textColor="@color/white"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
@@ -47,6 +50,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="BOOK"
+      android:textColor="@color/black"
+      android:background="@drawable/cardlayout"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />

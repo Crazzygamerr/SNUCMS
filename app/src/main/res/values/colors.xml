@@ -12,4 +12,5 @@
     <color name="lightGray">#EEE</color>
     <color name="white10">#EEEEEE</color>
     <color name="purple">#673AB7</color>
+    <color name="colorPrimary">#fd7014</color>
 </resources>

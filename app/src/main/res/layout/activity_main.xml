@@ -21,14 +21,43 @@
     <!--            android:layout_width="match_parent"-->
     <!--            android:layout_height="match_parent">-->
 
+    <!--        </TableRow>-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
+
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/btnTuckshop"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="100dp"-->
+    <!--        android:layout_below="@id/btnGymSlot"-->
+    <!--        android:layout_marginHorizontal="110dp"-->
+    <!--        android:layout_marginTop="10dp"-->
+
+    <!--        android:background="@drawable/mybutton2"-->
+    <!--        android:paddingHorizontal="25dp"-->
+    <!--        android:paddingVertical="25dp"-->
+    <!--        android:src="@drawable/tuckshop"-->
+    <!--        android:text="Tuck shop" />-->
+
+    <!--        </TableRow>-->
+
+    <!--        <TableRow-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent">-->
+
     <RelativeLayout
         android:id="@+id/btnTimetable"
         android:layout_width="150dp"
         android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginHorizontal="110dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/mybutton2"
 
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="71dp"
+        android:background="@drawable/mybutton2"
         android:text="Timetable">
 
 
@@ -67,12 +96,13 @@
         android:id="@+id/btnGymSlot"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/btnTimetable"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="110dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="28dp"
         android:background="@drawable/mybutton"
-
-        android:text="Gym Slot" >
+        android:text="Gym Slot">
 
         <TextView
             android:id="@+id/gym"
@@ -106,38 +136,31 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/tuckshop" />
+            app:srcCompat="@drawable/gym" />
 
 
     </RelativeLayout>
+
+    <!--<Button
+        android:id="@+id/btnCallBob"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/call_bob"
+        />-->
     <!--        </TableRow>-->
 
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent">-->
-
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/btnTuckshop"-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="100dp"-->
-    <!--        android:layout_below="@id/btnGymSlot"-->
-    <!--        android:layout_marginHorizontal="110dp"-->
-    <!--        android:layout_marginTop="10dp"-->
-
-    <!--        android:background="@drawable/mybutton2"-->
-    <!--        android:paddingHorizontal="25dp"-->
-    <!--        android:paddingVertical="25dp"-->
-    <!--        android:src="@drawable/tuckshop"-->
-    <!--        android:text="Tuck shop" />-->
+    <!--    </TableLayout>-->
 
     <RelativeLayout
         android:id="@+id/btnTuckshop"
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_below="@id/btnGymSlot"
+        android:layout_alignParentStart="true"
         android:layout_marginHorizontal="110dp"
-        android:layout_marginTop="10dp"
 
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="127dp"
         android:background="@drawable/mybutton2"
         android:src="@drawable/tuckshop">
 
@@ -183,9 +206,11 @@
         android:id="@+id/btnCallBob"
         android:layout_width="150dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/btnTuckshop"
+        android:layout_below="@+id/btnGymSlot"
+        android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="110dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="29dp"
         android:background="@drawable/mybutton"
         android:text="Call bob">
 
@@ -224,11 +249,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </RelativeLayout>
-    <!--        </TableRow>-->
 
-    <!--        <TableRow-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="match_parent">-->
 
     <RelativeLayout
 
@@ -236,11 +257,12 @@
         android:layout_width="150dp"
         android:layout_height="100dp"
         android:layout_below="@+id/btnCallBob"
+        android:layout_alignParentStart="true"
         android:layout_gravity="center"
         android:layout_marginHorizontal="110dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/mybutton2"
-      >
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="116dp"
+        android:background="@drawable/mybutton2">
 
         <TextView
             android:id="@+id/library"
@@ -276,27 +298,69 @@
 
     </RelativeLayout>
 
-    <!--<Button
-        android:id="@+id/btnCallBob"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="@string/call_bob"
-        />-->
-    <!--        </TableRow>-->
-
-    <!--    </TableLayout>-->
-
-    <Button
+    <RelativeLayout
         android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="10dp"
-        android:text="@string/log_out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="97dp"
+        android:layout_below="@+id/btnCallBob"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="110dp"
+        android:layout_marginStart="231dp"
+        android:layout_marginTop="118dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/mybutton">
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="37dp"
+            android:text="LOG OUT"
+            android:textAlignment="gravity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.506" />
+
+        <ImageView
+            android:id="@+id/logoutimg"
+            android:layout_width="42dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="26dp"
+            android:layout_toStartOf="@+id/logout"
+            android:src="@drawable/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/logout"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+
+    <!--    <Button-->
+<!--        android:id="@+id/btnLogout"-->
+<!--        android:layout_width="169dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:layout_below="@+id/btnCallBob"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="131dp"-->
+<!--        android:layout_marginEnd="22dp"-->
+<!--        android:background="@drawable/mybutton2"-->
+<!--        android:text="@string/log_out"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
 </RelativeLayout>

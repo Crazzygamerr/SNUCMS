@@ -1,4 +1,11 @@
 <resources>
+    <string name="google_icon">google icon</string>
+    <string name="facebook_icon">facebook icon</string>
+    <string name="or">OR</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="top_icon">TOP ICON</string>
     <string name="app_name">SNU CMS</string>
     <string name="add_entry">Add Entry</string>
     <string name="get_slot">Get Slot</string>

@@ -50,6 +50,7 @@ public class AddOrder extends AppCompatActivity {
         );
         spinnerShop.setAdapter(adapter);
         spinnerShop.setSelection(0);
+        spinnerShop.setPrompt("Select");
         currentShop = spinnerShop.getSelectedItem().toString();
         for(int i=0;i<items[0].length;i++){
             orders.put(items[0][i], 0);

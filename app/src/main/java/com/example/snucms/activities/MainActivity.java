@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout btnTuckshop = findViewById(R.id.btnTuckshop);
         RelativeLayout btnCallBob = findViewById(R.id.btnCallBob);
         RelativeLayout btnLibrary = findViewById(R.id.btnLibrary);
-        Button btnLogout = findViewById(R.id.btnLogout);
+        RelativeLayout btnLogout = findViewById(R.id.btnLogout);
 
         btnTimetable.setOnClickListener(
                 view -> startActivity(new Intent(MainActivity.this, CalendarMainActivity.class))
