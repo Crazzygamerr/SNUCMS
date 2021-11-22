@@ -2,6 +2,7 @@ package com.example.snucms.activities;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -113,21 +114,22 @@ public class MainActivity extends AppCompatActivity {
         //super.onBackPressed();
     }
 
+    ConstraintLayout btnTimetable, btnGymSLot, btnTuckshop, btnCallBob, btnLibrary, btnLogout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar;
         actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
-//      actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
-        actionBar.hide();
-        RelativeLayout btnTimetable = findViewById(R.id.btnTimetable);
-        RelativeLayout btnGymSLot = findViewById(R.id.btnGymSlot);
-        RelativeLayout btnTuckshop = findViewById(R.id.btnTuckshop);
-        RelativeLayout btnCallBob = findViewById(R.id.btnCallBob);
-        RelativeLayout btnLibrary = findViewById(R.id.btnLibrary);
-        RelativeLayout btnLogout = findViewById(R.id.btnLogout);
+        btnTimetable = findViewById(R.id.btnTimetable);
+        btnGymSLot = findViewById(R.id.btnGymSlot);
+        btnTuckshop = findViewById(R.id.btnTuckshop);
+        btnCallBob = findViewById(R.id.btnCallBob);
+        btnLibrary = findViewById(R.id.btnLibrary);
+        btnLogout = findViewById(R.id.btnLogout);
 
         btnTimetable.setOnClickListener(
                 view -> startActivity(new Intent(MainActivity.this, CalendarMainActivity.class))
