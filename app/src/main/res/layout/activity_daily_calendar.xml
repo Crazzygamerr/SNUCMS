@@ -37,15 +37,15 @@
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
 
             android:onClick="previousDayAction"
-            android:background="@null"
+            android:background="@color/black"
             android:text="@string/back"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -59,14 +59,14 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="nextDayAction"
             android:text="@string/forward"
-            android:background="@null"
-            android:textColor="@color/black"
+            android:background="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 

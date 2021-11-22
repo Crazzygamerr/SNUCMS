@@ -1,98 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:id="@+id/linearLayout3"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".timetable.EventEditActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e33442"
+    tools:context=".timetable.EventEditActivity">
 
-<TextView
-    android:id="@+id/eventNameTV"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Name:"
-    android:textColor="@color/black"
-    android:textSize="20sp"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+        android:id="@+id/eventNameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
 
-<EditText
-    android:id="@+id/eventName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ems="10"
-android:inputType="text"
-android:textSize="20sp"
-app:layout_constraintStart_toEndOf="@id/eventNameTV"
-app:layout_constraintTop_toTopOf="parent"/>
+        <EditText
+            android:id="@+id/eventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/eventNameTV"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<TextView
-    android:id="@+id/eventDateTV"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Date"
-    android:textColor="@color/black"
-    android:textSize="20sp"
-app:layout_constraintStart_toStartOf="parent"
-app:layout_constraintTop_toBottomOf="@+id/eventName" />
+        <TextView
+            android:id="@+id/eventNameTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Name:"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnPickDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pick date"
-        app:layout_constraintTop_toTopOf="@id/eventDateTV"
-        app:layout_constraintStart_toEndOf="@id/eventDateTV"
-        android:onClick="showDatePickerDialog" />
+    <RelativeLayout
+        android:id="@+id/datePickerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameContainer">
 
-<TextView
-    android:id="@+id/eventTimeTV"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Time"
-    android:textColor="@color/black"
-    android:textSize="20sp"
-app:layout_constraintTop_toBottomOf="@id/btnPickDate"
-app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/eventDateTV"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical"
+            android:text="Date"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent" />
 
-<Button
-    android:id="@+id/btnPickTime"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Pick time"
-    app:layout_constraintTop_toTopOf="@id/eventTimeTV"
-    app:layout_constraintStart_toEndOf="@id/eventTimeTV"
-    android:onClick="showTimePickerDialog" />
+        <Button
+            android:id="@+id/btnPickDate"
+            android:layout_width="115dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="showDatePickerDialog"
+            android:text="Pick date"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.729"
+            app:layout_constraintStart_toEndOf="@+id/eventDateTV"
+            app:layout_constraintVertical_bias="0.813" />
 
-<com.google.android.material.switchmaterial.SwitchMaterial
-    android:id="@+id/repeatSwitch"
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    android:text="Repeat weekly?"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/btnPickTime"/>
 
-<Button
-    android:id="@+id/btnSaveEvent"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:onClick="saveEventAction"
-    android:text="@string/Save"
-    android:textColor="@color/white"
-    android:textSize="20sp"
-app:layout_constraintTop_toBottomOf="@id/repeatSwitch"
-app:layout_constraintStart_toStartOf="parent"/>
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnRemoveEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="removeEventAction"
-        android:text="Remove"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/TimePickerContainer"
+        app:layout_constraintTop_toBottomOf="@+id/datePickerContainer">
+
+        <TextView
+            android:id="@+id/eventTimeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="22dp"
+            android:gravity="center_vertical"
+            android:text="Time"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/btnPickTime"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnPickTime"
+            android:layout_width="118dp"
+            android:layout_height="43dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="showTimePickerDialog"
+            android:text="Pick time"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.005" />
+    </RelativeLayout>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/repeatSwitch"
+        android:layout_width="155dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="32dp"
+        android:text="Repeat weekly?"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/btnSaveEvent"
-        app:layout_constraintStart_toStartOf="parent"/>
-    
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TimePickerContainer" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="120dp"
+        app:layout_constraintTop_toBottomOf="@+id/repeatSwitch"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <Button
+            android:id="@+id/btnSaveEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="saveEventAction"
+            android:text="@string/Save"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnRemoveEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="removeEventAction"
+            android:text="Remove"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSaveEvent" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

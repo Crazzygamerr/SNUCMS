@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="#ffcdd2"
     tools:context=".activities.Library">
 
     <com.journeyapps.barcodescanner.CompoundBarcodeView
@@ -36,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="Details"
         android:textSize="22dp"
+        android:textColor="#d83519"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name: "
+        android:textColor="#d83519"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,18 +60,19 @@
         android:id="@+id/studentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="25dp"
-        android:text="test1"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textColor="#d83519"
         app:layout_constraintStart_toEndOf="@id/textViewName"
-        app:layout_constraintTop_toBottomOf="@id/textViewDetails"
-        app:layout_constraintHorizontal_bias="0.1" />
+        app:layout_constraintTop_toBottomOf="@id/textViewDetails" />
 
     <TextView
         android:id="@+id/textViewRoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Roll Number: "
+        android:textColor="#d83519"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="@id/textViewName"
         app:layout_constraintTop_toBottomOf="@id/textViewName" />
@@ -77,17 +81,19 @@
         android:id="@+id/studentRoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="25dp"
-        android:text="0001"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        android:text=""
+        android:textColor="#d83519"
         app:layout_constraintStart_toEndOf="@id/textViewRoll"
-        app:layout_constraintTop_toBottomOf="@id/textViewName"/>
+        app:layout_constraintTop_toBottomOf="@id/textViewName" />
 
     <TextView
         android:id="@+id/textViewNetId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Net ID: "
+        android:textColor="#d83519"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="@id/textViewRoll"
         app:layout_constraintTop_toBottomOf="@id/textViewRoll" />
@@ -96,9 +102,10 @@
         android:id="@+id/studentNetId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="16dp"
         android:text="tt123"
+        android:textColor="#d83519"
         app:layout_constraintStart_toEndOf="@id/textViewNetId"
         app:layout_constraintTop_toBottomOf="@id/textViewRoll" />
 
@@ -107,6 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Token Number: "
+        android:textColor="#d83519"
         app:layout_constraintStart_toStartOf="@id/textViewNetId"
         app:layout_constraintTop_toTopOf="@id/editTextToken"
         app:layout_constraintBottom_toBottomOf="@id/editTextToken"/>
@@ -115,18 +123,21 @@
         android:id="@+id/editTextToken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:hint="Enter the token id"
         android:inputType="number"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="25dp"
+        android:textColor="#d83519"
+        android:textColorHint="#d83519"
         app:layout_constraintStart_toEndOf="@id/textViewToken"
-        app:layout_constraintTop_toBottomOf="@id/textViewNetId"/>
+        app:layout_constraintTop_toBottomOf="@id/textViewNetId" />
 
     <TextView
         android:id="@+id/textViewVerified"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Entry verification: "
+        android:textColor="#d83519"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@id/textViewToken"
         app:layout_constraintTop_toBottomOf="@id/editTextToken" />
@@ -154,11 +165,13 @@
         app:layout_constraintTop_toBottomOf="@id/editTextToken"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddEntry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Entry"
+        android:background="#d83519"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

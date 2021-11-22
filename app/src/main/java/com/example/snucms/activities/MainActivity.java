@@ -119,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
+//      actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
+        actionBar.hide();
         RelativeLayout btnTimetable = findViewById(R.id.btnTimetable);
         RelativeLayout btnGymSLot = findViewById(R.id.btnGymSlot);
         RelativeLayout btnTuckshop = findViewById(R.id.btnTuckshop);

@@ -1,15 +1,18 @@
 package com.example.snucms.timetable;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.snucms.R;
+import com.google.firebase.components.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +27,9 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_main);
 
@@ -32,6 +38,7 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
 
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
+
     }
 
     private void setMonthView()
@@ -60,6 +67,7 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
     @Override
     public void onItemClick(int position, LocalDate date)
     {
+
         if(date != null)
         {
             //System.out.println("---------");
@@ -75,8 +83,8 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
     public void addEvent(View view) {
         startActivity(new Intent(this, EventEditActivity.class));
     }
-}
 
+}
 
 
 

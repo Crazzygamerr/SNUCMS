@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="+"
         android:textColor="@color/black"
+        android:background="@drawable/addorderbtn"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -46,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-
+android:background="@drawable/addorderbtn"
         android:textColor="@color/black"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@id/btnAddQty"
