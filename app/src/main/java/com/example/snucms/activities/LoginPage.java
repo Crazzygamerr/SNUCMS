@@ -13,8 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.snucms.R;
 import com.example.snucms.firebaseHelper;
+import com.example.snucms.jsonHelper;
 import com.google.android.material.button.MaterialButton;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -40,6 +44,14 @@ public class LoginPage extends AppCompatActivity {
             firebaseHelper.name = sharedPref.getString("name", "");
             firebaseHelper.rollno = sharedPref.getString("rollno", "");
             startActivity(new Intent(LoginPage.this, MainActivity.class));
+        }
+        System.out.println("Fine before this");
+        try {
+            new jsonHelper(getApplicationContext()).readJson();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
         setContentView(R.layout.login_screen);

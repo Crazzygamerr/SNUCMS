@@ -1,5 +1,6 @@
 package com.example.snucms.gymslot;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,8 +46,8 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
 
     public static class SlotViewHolder extends RecyclerView.ViewHolder{
 
-        TextView slotTitle, textViewTotal, textViewRemaining, textViewBooked;
-        Button btnBookSlot;
+        TextView slotTitle, textViewTotal, textViewRemaining, textViewBooked, textViewFull;
+        Button btnBookSlot, btnCancelSlot;
 
         public SlotViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -54,7 +55,9 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
             textViewTotal = itemView.findViewById(R.id.textViewTotal);
             textViewRemaining = itemView.findViewById(R.id.textViewRemaining);
             btnBookSlot = itemView.findViewById(R.id.btnBookSlot);
+            btnCancelSlot = itemView.findViewById(R.id.btnCancelSlot);
             textViewBooked = itemView.findViewById(R.id.textViewBooked);
+            textViewFull = itemView.findViewById(R.id.textViewFull);
         }
 
         private void bind(SlotClass slotClass, Context context) {
@@ -68,14 +71,48 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
             textViewRemaining.setText(s);
 
             if(slotClass.remainingSlots > 0 && !slotClass.rollno.contains(firebaseHelper.rollno)) {
+                btnBookSlot.setVisibility(View.VISIBLE);
+                btnCancelSlot.setVisibility(View.GONE);
+                textViewBooked.setVisibility(View.GONE);
+                textViewFull.setVisibility(View.GONE);
                 btnBookSlot.setOnClickListener(view -> {
                     firebaseHelper.addSlot(slotClass);
                 });
+            } else if(slotClass.rollno.contains(firebaseHelper.rollno)) {
+                btnBookSlot.setVisibility(View.GONE);
+                btnCancelSlot.setVisibility(View.VISIBLE);
+                textViewBooked.setVisibility(View.VISIBLE);
+                textViewFull.setVisibility(View.GONE);
+                btnCancelSlot.setOnClickListener(view -> {
+                    confirm(slotClass, context);
+                });
             } else {
                 btnBookSlot.setVisibility(View.GONE);
-                textViewBooked.setVisibility(View.VISIBLE);
+                btnCancelSlot.setVisibility(View.GONE);
+                textViewBooked.setVisibility(View.GONE);
+                textViewFull.setVisibility(View.VISIBLE);
             }
         }
+
+        private void confirm(SlotClass slotClass, Context context) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("Are you sure you want to cancel your slot?");
+            builder.setCancelable(true);
+            builder.setPositiveButton(
+                    "Yes",
+                    (dialogInterface, i) -> {
+                        firebaseHelper.removeSlot(slotClass);
+                        dialogInterface.dismiss();
+                    }
+            );
+            builder.setNegativeButton(
+                    "No",
+                    (dialogInterface, i) -> dialogInterface.dismiss()
+            );
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
     }
 
 }
