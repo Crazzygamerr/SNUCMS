@@ -300,7 +300,7 @@
             android:layout_marginTop="-1dp"
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="1dp"
-            android:textColor="#F44336"
+            android:textColor="@color/black"
             android:fontFamily="@font/merriweather_sans"
             android:gravity="center"
             android:text="Log Out"

@@ -11,7 +11,7 @@
       android:id="@+id/topView"
       android:layout_width="0dp"
       android:layout_height="150dp"
-      android:background="@color/colorPrimary"
+      android:background="#d4f1f4"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
       android:layout_marginStart="42dp"
       android:layout_marginTop="48dp"
       android:text="SNU CMS"
-      android:textColor="@android:color/white"
+      android:textColor="@android:color/black"
       android:textSize="30sp"
       android:textStyle="bold"
       app:layout_constraintEnd_toStartOf="@+id/imageView5"

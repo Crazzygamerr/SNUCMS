@@ -9,22 +9,12 @@
     android:background="@drawable/issueitemcolour"
     >
 
-    <ImageView
-        android:layout_width="59dp"
-        android:layout_height="62dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="11dp"
-        android:src="@drawable/call1"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayoutOpen"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintLeft_toLeftOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+
         android:id="@+id/linearLayout"
-        android:layout_width="191dp"
-        android:layout_height="73dp"
+        android:layout_width="155dp"
+        android:layout_height="71dp"
         android:baselineAligned="false"
         android:gravity="start"
         android:orientation="vertical"
@@ -32,7 +22,7 @@
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@id/linearLayoutOpen"
         app:layout_constraintEnd_toStartOf="@+id/issueTimeStatus"
-        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -42,8 +32,8 @@
             android:id="@+id/id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="@string/_0000" />
+            android:text="@string/_0000"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/slotTitle"
@@ -59,8 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="3"
-            android:textColor="@color/black"
-            android:text="@string/description" />
+            android:text="@string/description"
+            android:textColor="@color/black" />
 
     </LinearLayout>
 
@@ -68,14 +58,14 @@
         android:id="@+id/issueTimeStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:baselineAligned="false"
         android:gravity="end"
         android:orientation="vertical"
-        app:layout_constraintVertical_bias="0"
-        android:layout_marginTop="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2">
 
         <TextView
             android:id="@+id/dateView"
@@ -83,8 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingEnd="10dp"
-            android:textColor="@color/black"
-            android:text="12:30PM Oct, 12 2021" />
+            android:text="12:30PM Oct, 12 2021"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/statusView"

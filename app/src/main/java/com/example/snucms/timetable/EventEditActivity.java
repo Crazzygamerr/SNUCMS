@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.snucms.R;
@@ -40,6 +41,9 @@ public class EventEditActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
         eventNameET = findViewById(R.id.eventName);
         eventDateTV = findViewById(R.id.eventDateTV);

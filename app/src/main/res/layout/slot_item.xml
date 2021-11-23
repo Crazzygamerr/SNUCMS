@@ -10,7 +10,6 @@
     android:layout_marginHorizontal="10dp"
     android:elevation="50in"
     android:outlineAmbientShadowColor="#FF0000"
-
     android:padding="10dp">
 
 
