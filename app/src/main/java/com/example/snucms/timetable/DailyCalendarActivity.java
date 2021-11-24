@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.snucms.R;
@@ -27,6 +28,9 @@ public class DailyCalendarActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_calendar);
         initWidgets();

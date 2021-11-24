@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical"
     tools:context=".timetable.CalendarMainActivity">
 
@@ -16,7 +15,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#75e6da"
         android:clickable="true"
         android:onClick="addEvent"
         app:srcCompat="@android:drawable/ic_input_add"
@@ -46,7 +45,6 @@
             android:onClick="previousMonthAction"
             android:text="@string/back"
             android:textColor="@color/white"
-
             android:textSize="20sp"
             android:textStyle="bold" />
 

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".timetable.WeekViewActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -14,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#75e6da"
         android:layout_gravity="bottom|end"
         android:clickable="true"
         android:onClick="newEventAction"

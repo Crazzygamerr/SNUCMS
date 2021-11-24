@@ -52,6 +52,7 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
         calendarRecyclerView.setAdapter(calendarAdapter);
     }
 
+
     public void previousMonthAction(View view)
     {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
