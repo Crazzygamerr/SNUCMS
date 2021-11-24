@@ -2,6 +2,8 @@ package com.example.snucms.gymslot;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,6 +113,8 @@ public class SlotViewAdapter extends RecyclerView.Adapter<SlotViewAdapter.SlotVi
             );
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+            alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
         }
 
     }

@@ -66,7 +66,9 @@ public class OrderViewAdapter extends RecyclerView.Adapter<OrderViewAdapter.Orde
             orderId.setText(orderClass.id);
             String temp = "";
             for(int i=0;i<orderClass.order.size();i++){
-                temp = temp + orderClass.order.get(i) + "\n";
+                temp = temp + orderClass.order.get(i);
+                if(i != orderClass.order.size()-1)
+                    temp = temp + "\n";
             }
             orderList.setText(temp);
             shopView.setText(orderClass.shop);

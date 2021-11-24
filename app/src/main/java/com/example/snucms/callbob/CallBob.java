@@ -3,6 +3,7 @@ package com.example.snucms.callbob;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.snucms.R;
@@ -101,6 +102,8 @@ public class CallBob extends AppCompatActivity {
                     }
                 }
         );
+        alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+        alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.snucms.callbob;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,7 +95,7 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.Issu
             idTextView.setText(issueClass.id);
             titleTextView.setText(issueClass.title);
             descTextView.setText(issueClass.description);
-            descTextView.setMaxLines(3);
+            descTextView.setMaxLines(1);
 
             //dateView.setText((issueClass.genTime == null)?"":issueClass.genTime.toString());
             dateView.setText((issueClass.genTime == null)?"":sfd.format(issueClass.genTime.toDate()));
@@ -144,6 +145,7 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.Issu
                     (visible && !studentVerify)
                             ? View.VISIBLE
                             : View.GONE);
+            descTextView.setMaxLines((visible)?5:1);
         }
 
         private void confirm(IssueClass issueClass, Context context) {
@@ -163,6 +165,8 @@ public class IssueViewAdapter extends RecyclerView.Adapter<IssueViewAdapter.Issu
             );
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
+            alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.BLACK);
         }
 
     }
