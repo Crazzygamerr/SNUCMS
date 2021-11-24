@@ -18,6 +18,7 @@
         android:layout_gravity="bottom|end"
         android:clickable="true"
         android:onClick="newEventAction"
+
         app:srcCompat="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -28,6 +29,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#d4f1f4"
     android:orientation="vertical"
     tools:context=".timetable.WeekViewActivity">
 
@@ -38,13 +40,13 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/back"
             android:textColor="@color/white"
-            android:background="@null"
+            android:background="#75e6da"
             android:textStyle="bold"
             android:onClick="previousWeekAction"
             android:textSize="20sp"/>
@@ -55,17 +57,18 @@
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="Feb 2021"
+            android:background="#d4f1f4"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@color/black"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/forward"
             android:textColor="@color/white"
-            android:background="@null"
+            android:background="#75e6da"
             android:textStyle="bold"
             android:onClick="nextWeekAction"
             android:textSize="20sp"/>
@@ -148,12 +151,14 @@
         android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="#d4f1f4"
         android:layout_weight="1"/>
 
     <ListView
         android:id="@+id/eventListView"
         android:layout_width="match_parent"
         android:divider="@null"
+        android:background="#d4f1f4"
         android:layout_height="0dp"
         android:layout_weight="5"/>
 

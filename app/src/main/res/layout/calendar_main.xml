@@ -21,12 +21,14 @@
         android:onClick="addEvent"
         app:srcCompat="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"/>
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#d4f1f4"
     tools:context=".timetable.CalendarMainActivity">
 
     <LinearLayout
