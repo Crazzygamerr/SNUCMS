@@ -20,6 +20,7 @@
         <entry key="app/src/main/res/drawable/addorderbtn.xml" value="0.184375" />
         <entry key="app/src/main/res/drawable/border_set.xml" value="0.1890625" />
         <entry key="app/src/main/res/drawable/cardlayout.xml" value="0.184375" />
+        <entry key="app/src/main/res/drawable/datestyle.xml" value="0.184375" />
         <entry key="app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.17447916666666666" />
         <entry key="app/src/main/res/drawable/ic_email.xml" value="0.17447916666666666" />
@@ -42,8 +43,8 @@
         <entry key="app/src/main/res/layout/add_issue.xml" value="0.2260423830803897" />
         <entry key="app/src/main/res/layout/add_order.xml" value="0.16822916666666668" />
         <entry key="app/src/main/res/layout/alarm.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/calendar_cell.xml" value="0.15070921985815602" />
-        <entry key="app/src/main/res/layout/calendar_main.xml" value="0.15348408585736292" />
+        <entry key="app/src/main/res/layout/calendar_cell.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/calendar_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/call_bob.xml" value="0.19746376811594202" />
         <entry key="app/src/main/res/layout/event_cell.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/gym_slot.xml" value="0.19746376811594202" />

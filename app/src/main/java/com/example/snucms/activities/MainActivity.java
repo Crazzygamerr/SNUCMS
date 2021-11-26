@@ -140,13 +140,18 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         MainActivity.this.startActivity(new Intent(MainActivity.this, GymSlot.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
                         //firebaseHelper.populateSlots();
                     }
                 }
         );
 
         btnTuckshop.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, Tuckshop.class))
+
+                    view ->startActivity(new Intent(MainActivity.this, Tuckshop .class))
+
+
         );
 
         btnCallBob.setOnClickListener(
