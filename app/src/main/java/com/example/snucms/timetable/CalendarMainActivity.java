@@ -33,8 +33,10 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_main);
 
-        calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
+        calendarRecyclerView =  findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
+
+
 
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();

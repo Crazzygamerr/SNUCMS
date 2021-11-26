@@ -16,6 +16,7 @@ import com.example.snucms.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class EventAdapter extends ArrayAdapter<com.example.snucms.timetable.Event> {
 
@@ -41,7 +42,7 @@ public class EventAdapter extends ArrayAdapter<com.example.snucms.timetable.Even
                 itemView = LayoutInflater.from(getContext()).inflate(R.layout.event_cell, parent, false);
 
             TextView eventCellTV = itemView.findViewById(R.id.eventCellTV);
-            String eventTitle = event.getName() + " " + CalendarUtils.formattedTime(event.getTime());
+            String eventTitle = event.getName().toUpperCase(Locale.ROOT) + "                          " + CalendarUtils.formattedTime(event.getTime());
             eventCellTV.setText(eventTitle);
 
             itemView.findViewById(R.id.eventCellLL).setOnClickListener(view -> {

@@ -1,20 +1,20 @@
 package com.example.snucms.activities;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import javax.naming.Context;
+import javax.swing.text.View;
 
 import com.example.snucms.R;
 import com.example.snucms.callbob.CallBob;
 import com.example.snucms.gymslot.GymSlot;
 import com.example.snucms.timetable.CalendarMainActivity;
 import com.example.snucms.tuckshop.Tuckshop;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.RelativeLayout;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 /*
 Timetable with Google Calendar Integration and notifications for classes, assignments, ISC slots and other events
@@ -128,28 +128,66 @@ public class MainActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
 
         btnTimetable.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, CalendarMainActivity.class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, CalendarMainActivity.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
         );
 
         btnGymSLot.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(MainActivity.this, GymSlot.class));
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, GymSlot.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+                        //firebaseHelper.populateSlots();
                     }
                 }
         );
 
         btnTuckshop.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, Tuckshop.class))
+
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, Tuckshop.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
+
+
         );
 
         btnCallBob.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, CallBob.class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, CallBob.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
         );
 
         btnLibrary.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, Library.class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, Library.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
         );
 
         btnLogout.setOnClickListener(view -> {

@@ -1,6 +1,7 @@
 package com.example.snucms.timetable;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -21,21 +22,20 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private ListView eventListView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
         ActionBar actionBar;
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week_view);
-
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
         eventListView = findViewById(R.id.eventListView);
-
         setWeekView();
+
     }
 
     private void setWeekView()
@@ -68,6 +68,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     {
         if(CalendarUtils.selectedDate.equals(date))
             startActivity(new Intent(this, DailyCalendarActivity.class));
+        
         else {
             CalendarUtils.selectedDate = date;
             setWeekView();

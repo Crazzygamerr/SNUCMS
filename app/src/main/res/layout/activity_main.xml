@@ -85,7 +85,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="110dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
         android:background="@drawable/mybutton"
         android:text="Timetable">
@@ -134,7 +134,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="110dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
         android:background="@drawable/mybutton2"
         android:text="Timetable">
@@ -183,7 +183,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="110dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
         android:background="@drawable/mybutton"
         android:text="Timetable">
@@ -232,7 +232,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginHorizontal="110dp"
         android:layout_marginStart="22dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="22dp"
         android:background="@drawable/mybutton2"
         android:text="Timetable">
