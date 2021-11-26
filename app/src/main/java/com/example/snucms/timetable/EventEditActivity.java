@@ -41,11 +41,11 @@ public class EventEditActivity extends AppCompatActivity
 {
     private EditText eventNameET;
     private TextView eventDateTV, eventTimeTV;
-    private SwitchMaterial repeatSwitch;
+    private SwitchMaterial repeatSwitch, notificationSwitch;
     private Button btnRemoveEvent;
 
     int mYear, mMonth, mDay, mHour, mMinute, pos;
-    boolean repeat = false;
+    boolean repeat = false, notification = true;
     Event event;
 
     @Override
@@ -55,16 +55,22 @@ public class EventEditActivity extends AppCompatActivity
         setContentView(R.layout.activity_event_edit);
         ActionBar actionBar;
         actionBar = getSupportActionBar();
-        actionBar.setTitle((event == null)?"Add event":"Edit event");
+        //actionBar.setTitle((event == null)?"Add event":"Edit event");
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
         eventNameET = findViewById(R.id.eventName);
         eventDateTV = findViewById(R.id.eventDateTV);
         eventTimeTV = findViewById(R.id.eventTimeTV);
-        repeatSwitch = findViewById(R.id.repeatSwitch);
         btnRemoveEvent = findViewById(R.id.btnRemoveEvent);
+        repeatSwitch = findViewById(R.id.repeatSwitch);
+        notificationSwitch = findViewById(R.id.notificationSwitch);
 
         repeatSwitch.setOnCheckedChangeListener((compoundButton, b) -> repeat = b);
+        notificationSwitch.setChecked(true);
+        notificationSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            notification = b;
+            repeatSwitch.setEnabled(b);
+        });
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
@@ -111,38 +117,30 @@ public class EventEditActivity extends AppCompatActivity
 
         new jsonHelper(getApplicationContext()).writeJson();
 
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
-        //intent.setAction(Long.toString(System.currentTimeMillis()));
-        intent.putExtra("id", newEvent.getId());
-        intent.putExtra("name", newEvent.getName());
-        intent.putExtra("date", DateTimeFormatter.ofPattern("dd/LL/yyyy").format(newEvent.getDate()));
-        intent.putExtra("time", newEvent.getTime().format(DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)));
-        PendingIntent alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) newEvent.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        if(notification) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+            intent.putExtra("id", newEvent.getId());
+            intent.putExtra("name", newEvent.getName());
+            intent.putExtra("date", DateTimeFormatter.ofPattern("dd/LL/yyyy").format(newEvent.getDate()));
+            intent.putExtra("time", newEvent.getTime().format(DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)));
+            PendingIntent alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) newEvent.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(mYear, mMonth-1, mDay, mHour, mMinute, 5);
-        //System.out.println(mYear + " " + mMonth + " " + mDay + " " + mHour + " " + mMinute);
-        /*cal.add(Calendar.YEAR, mYear);
-        cal.add(Calendar.MONTH, mMonth);
-        cal.add(Calendar.DAY_OF_WEEK, mDay);
-        cal.add(Calendar.HOUR_OF_DAY, mHour);
-        cal.add(Calendar.MINUTE, mMinute);*/
-        //long difference = cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
-        //System.out.println(Calendar.getInstance().getTimeInMillis() + " ---------- " + difference);
-        Calendar calendar = Calendar.getInstance();
-        if(repeat) {
-            if(cal.before(calendar)) {
-                int day = cal.get(Calendar.DAY_OF_WEEK);
-                cal = (Calendar) calendar.clone();
-                if(day - cal.get(Calendar.DAY_OF_WEEK) < 0) {
-                    cal.add(Calendar.DATE, 7);
+            Calendar cal = Calendar.getInstance();
+            cal.set(mYear, mMonth - 1, mDay, mHour, mMinute, 5);
+            Calendar calendar = Calendar.getInstance();
+            if (repeat) {
+                if (cal.before(calendar)) {
+                    int day = cal.get(Calendar.DAY_OF_WEEK);
+                    cal = (Calendar) calendar.clone();
+                    if (day - cal.get(Calendar.DAY_OF_WEEK) < 0) {
+                        cal.add(Calendar.DATE, 7);
+                    }
                 }
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), (7 * 24 * 60 * 60 * 1000), alarmIntent);
+            } else {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmIntent);
             }
-            //System.out.println(cal.get(Calendar.DATE));
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), (7 * 24 * 60 * 60 * 1000), alarmIntent);
-        } else {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmIntent);
         }
 
         finish();
