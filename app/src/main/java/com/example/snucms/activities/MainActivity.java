@@ -1,21 +1,17 @@
 package com.example.snucms.activities;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.snucms.R;
 import com.example.snucms.callbob.CallBob;
-import com.example.snucms.firebaseHelper;
 import com.example.snucms.gymslot.GymSlot;
 import com.example.snucms.timetable.CalendarMainActivity;
 import com.example.snucms.tuckshop.Tuckshop;
@@ -139,8 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MainActivity.this.startActivity(new Intent(MainActivity.this, GymSlot.class));
-                        //firebaseHelper.populateSlots();
+                        startActivity(new Intent(MainActivity.this, GymSlot.class));
                     }
                 }
         );
@@ -166,4 +161,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

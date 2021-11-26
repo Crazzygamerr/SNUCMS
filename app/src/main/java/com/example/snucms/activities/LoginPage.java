@@ -1,8 +1,11 @@
 package com.example.snucms.activities;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -47,9 +50,10 @@ public class LoginPage extends AppCompatActivity {
             firebaseHelper.netid = netid;
             firebaseHelper.name = sharedPref.getString("name", "");
             firebaseHelper.rollno = sharedPref.getString("rollno", "");
+            createNotificationChannel();
             startActivity(new Intent(LoginPage.this, MainActivity.class));
         }
-        System.out.println("Fine before this");
+        //System.out.println("Fine before this");
         try {
             new jsonHelper(getApplicationContext()).readJson();
         } catch (IOException e) {
@@ -79,7 +83,7 @@ public class LoginPage extends AppCompatActivity {
                         firebaseHelper.name = students.get(editTextNetId.getText().toString())[0];
                         firebaseHelper.rollno = students.get(editTextNetId.getText().toString())[1];
                         editor.apply();
-                        System.out.println(sharedPref.getAll());
+                        //System.out.println(sharedPref.getAll());
                         startActivity(new Intent(LoginPage.this, MainActivity.class));
                     } else {
                         Toast.makeText(LoginPage.this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
@@ -91,4 +95,21 @@ public class LoginPage extends AppCompatActivity {
         });
 
     }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "channel_name";
+            String description = "channel_description";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("channel", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 }

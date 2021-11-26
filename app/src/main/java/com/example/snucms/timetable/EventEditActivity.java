@@ -1,8 +1,14 @@
 package com.example.snucms.timetable;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -21,9 +27,15 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class EventEditActivity extends AppCompatActivity
 {
@@ -43,6 +55,7 @@ public class EventEditActivity extends AppCompatActivity
         setContentView(R.layout.activity_event_edit);
         ActionBar actionBar;
         actionBar = getSupportActionBar();
+        actionBar.setTitle((event == null)?"Add event":"Edit event");
         actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
         eventNameET = findViewById(R.id.eventName);
@@ -83,19 +96,67 @@ public class EventEditActivity extends AppCompatActivity
 
     public void saveEventAction(View view) throws IOException, JSONException {
         String eventName = eventNameET.getText().toString();
-        Event newEvent = new Event(eventName, LocalDate.of(mYear, mMonth, mDay), LocalTime.of(mHour, mMinute), repeat);
-        if(event == null)
+        Event newEvent = new Event(
+                (event == null)?Event.lastId++:event.getId(),
+                eventName,
+                LocalDate.of(mYear, mMonth, mDay),
+                LocalTime.of(mHour, mMinute),
+                repeat
+        );
+        if(event == null) {
             CalendarUtils.eventsList.add(newEvent);
-        else
+        } else {
             CalendarUtils.eventsList.set(pos, newEvent);
+        }
 
         new jsonHelper(getApplicationContext()).writeJson();
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+        //intent.setAction(Long.toString(System.currentTimeMillis()));
+        intent.putExtra("id", newEvent.getId());
+        intent.putExtra("name", newEvent.getName());
+        intent.putExtra("date", DateTimeFormatter.ofPattern("dd/LL/yyyy").format(newEvent.getDate()));
+        intent.putExtra("time", newEvent.getTime().format(DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)));
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) newEvent.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(mYear, mMonth-1, mDay, mHour, mMinute, 5);
+        //System.out.println(mYear + " " + mMonth + " " + mDay + " " + mHour + " " + mMinute);
+        /*cal.add(Calendar.YEAR, mYear);
+        cal.add(Calendar.MONTH, mMonth);
+        cal.add(Calendar.DAY_OF_WEEK, mDay);
+        cal.add(Calendar.HOUR_OF_DAY, mHour);
+        cal.add(Calendar.MINUTE, mMinute);*/
+        //long difference = cal.getTimeInMillis() - Calendar.getInstance().getTimeInMillis();
+        //System.out.println(Calendar.getInstance().getTimeInMillis() + " ---------- " + difference);
+        Calendar calendar = Calendar.getInstance();
+        if(repeat) {
+            if(cal.before(calendar)) {
+                int day = cal.get(Calendar.DAY_OF_WEEK);
+                cal = (Calendar) calendar.clone();
+                if(day - cal.get(Calendar.DAY_OF_WEEK) < 0) {
+                    cal.add(Calendar.DATE, 7);
+                }
+            }
+            //System.out.println(cal.get(Calendar.DATE));
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), (7 * 24 * 60 * 60 * 1000), alarmIntent);
+        } else {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmIntent);
+        }
+
         finish();
     }
 
     public void removeEventAction(View view) throws IOException, JSONException {
         CalendarUtils.eventsList.remove(event);
         new jsonHelper(getApplicationContext()).writeJson();
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getApplicationContext(), AlarmReceiver.class);
+        PendingIntent alarmIntent = PendingIntent.getBroadcast(getApplicationContext(), (int) event.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.cancel(alarmIntent);
+
         finish();
     }
 
@@ -110,6 +171,9 @@ public class EventEditActivity extends AppCompatActivity
                     }
                 }, mHour, mMinute, false);
         timePickerDialog.show();
+        timePickerDialog.getButton(TimePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+        timePickerDialog.getButton(TimePickerDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+        timePickerDialog.getButton(TimePickerDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK);
     }
 
     public void showDatePickerDialog(View v) {
@@ -124,6 +188,9 @@ public class EventEditActivity extends AppCompatActivity
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
+        datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+        datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+        datePickerDialog.getButton(DatePickerDialog.BUTTON_NEUTRAL).setTextColor(Color.BLACK);
     }
 
 }

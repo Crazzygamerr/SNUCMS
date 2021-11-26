@@ -41,12 +41,13 @@ public class jsonHelper {
         JSONObject jsonObject = new JSONObject(stringBuilder.toString());
         JSONArray jsonArray = jsonObject.getJSONArray("events");
         CalendarUtils.eventsList.clear();
-        System.out.println(jsonArray.toString());
+        //System.out.println(jsonArray.toString());
         for(int i=0;i<jsonArray.length();i++){
             JSONObject jsonObj = (jsonArray.get(i).getClass() == JSONObject.class)?
                     ((JSONObject) jsonArray.get(i))
                     :new JSONObject();
             Event temp = new Event(
+                    jsonObj.getLong("id"),
                     jsonObj.getString("name"),
                     LocalDate.parse(jsonObj.getString("date")),
                     LocalTime.parse(jsonObj.getString("time")),
@@ -61,6 +62,7 @@ public class jsonHelper {
         JSONArray jsonArray = new JSONArray();
         for(int i=0;i<CalendarUtils.eventsList.size();i++) {
             JSONObject temp = new JSONObject();
+            temp.put("id", CalendarUtils.eventsList.get(i).getId());
             temp.put("name", CalendarUtils.eventsList.get(i).getName());
             temp.put("date", CalendarUtils.eventsList.get(i).getDate());
             temp.put("time", CalendarUtils.eventsList.get(i).getTime());
@@ -69,7 +71,7 @@ public class jsonHelper {
         }
         jsonObject.put("events", jsonArray);
         String userString = jsonObject.toString();
-        System.out.println(jsonObject.toString());
+        //System.out.println(jsonObject.toString());
 
         FileWriter fileWriter = new FileWriter(jsonFile);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
