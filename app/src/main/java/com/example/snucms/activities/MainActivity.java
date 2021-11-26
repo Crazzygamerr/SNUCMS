@@ -132,7 +132,15 @@ public class MainActivity extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
 
         btnTimetable.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, CalendarMainActivity.class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, CalendarMainActivity.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
         );
 
         btnGymSLot.setOnClickListener(
@@ -149,17 +157,41 @@ public class MainActivity extends AppCompatActivity {
 
         btnTuckshop.setOnClickListener(
 
-                    view ->startActivity(new Intent(MainActivity.this, Tuckshop .class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, Tuckshop.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
 
 
         );
 
         btnCallBob.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, CallBob.class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, CallBob.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
         );
 
         btnLibrary.setOnClickListener(
-                view -> startActivity(new Intent(MainActivity.this, Library.class))
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        MainActivity.this.startActivity(new Intent(MainActivity.this, Library.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+
+                    }
+                }
         );
 
         btnLogout.setOnClickListener(view -> {

@@ -81,6 +81,7 @@ public class LoginPage extends AppCompatActivity {
                         editor.apply();
                         System.out.println(sharedPref.getAll());
                         startActivity(new Intent(LoginPage.this, MainActivity.class));
+                        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                     } else {
                         Toast.makeText(LoginPage.this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
                     }
