@@ -47,6 +47,17 @@ public class Event
         return events;
     }*/
 
+    public static ArrayList<Event> eventsForDate(LocalDate date) {
+        ArrayList<Event> events = new ArrayList<>();
+
+        for(Event event : CalendarUtils.eventsList) {
+            if(event.getDate().equals(date) || (event.repeat && event.getDate().getDayOfWeek() == date.getDayOfWeek()))
+                events.add(event);
+        }
+
+        return events;
+    }
+
     public static ArrayList<Event> eventsForDateAndTime(LocalDate date, LocalTime time)
     {
         ArrayList<Event> events = new ArrayList<>();

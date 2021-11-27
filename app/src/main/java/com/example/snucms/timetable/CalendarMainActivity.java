@@ -1,7 +1,6 @@
 package com.example.snucms.timetable;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.snucms.R;
-import com.google.firebase.components.Component;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,17 +34,36 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
         calendarRecyclerView =  findViewById(R.id.calendarRecyclerView);
         monthYearText = findViewById(R.id.monthYearTV);
 
-
-
         CalendarUtils.selectedDate = LocalDate.now();
         setMonthView();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setMonthView();
     }
 
     private void setMonthView()
     {
         monthYearText.setText(CalendarUtils.monthYearFromDate(CalendarUtils.selectedDate));
         ArrayList<LocalDate> daysInMonth = CalendarUtils.daysInMonthArray(CalendarUtils.selectedDate);
+
+        //Get events for each day and add the names to dailyEventMap
+        CalendarUtils.dailyEventMap.clear();
+        for(int i=0;i<daysInMonth.size();i++) {
+            if(daysInMonth.get(i) == null)
+                continue;
+            ArrayList<Event> eventsInDay = Event.eventsForDate(daysInMonth.get(i));
+            if(eventsInDay.size() > 0) {
+                ArrayList<String> eventStrings = new ArrayList<>();
+                for(int j=0;j<5 && j<eventsInDay.size();j++) {
+                    eventStrings.add(eventsInDay.get(j).getName());
+                }
+                CalendarUtils.dailyEventMap.put(daysInMonth.get(i).getDayOfMonth(), eventStrings);
+            }
+        }
 
         CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);

@@ -41,9 +41,23 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     private void setWeekView()
     {
         monthYearText.setText(CalendarUtils.monthYearFromDate(CalendarUtils.selectedDate));
-        ArrayList<LocalDate> days = CalendarUtils.daysInWeekArray(CalendarUtils.selectedDate);
+        ArrayList<LocalDate> daysInWeek = CalendarUtils.daysInWeekArray(CalendarUtils.selectedDate);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(days, this);
+        //Get events for each day and add the names to dailyEventMap
+        CalendarUtils.dailyEventMap.clear();
+        for(int i=0;i<daysInWeek.size();i++) {
+            if(daysInWeek.get(i) == null)
+                continue;
+            ArrayList<Event> eventsInDay = Event.eventsForDate(daysInWeek.get(i));
+            if(eventsInDay.size() > 0) {
+                ArrayList<String> eventStrings = new ArrayList<>();
+                for(int j=0;j<3 && j<eventsInDay.size();j++)
+                    eventStrings.add(eventsInDay.get(j).getName());
+                CalendarUtils.dailyEventMap.put(daysInWeek.get(i).getDayOfMonth(), eventStrings);
+            }
+        }
+
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInWeek, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
@@ -81,7 +95,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
     protected void onResume()
     {
         super.onResume();
-        setEventAdpater();
+        setWeekView();
     }
 
     private void setEventAdpater()

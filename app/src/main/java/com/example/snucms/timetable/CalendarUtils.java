@@ -6,11 +6,13 @@ import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CalendarUtils
 {
     public static LocalDate selectedDate;
     public static ArrayList<Event> eventsList = new ArrayList<>();
+    public static HashMap<Integer, ArrayList<String>> dailyEventMap = new HashMap<Integer, ArrayList<String>>();
 
     public static String formattedDate(LocalDate date)
     {
@@ -52,7 +54,7 @@ public class CalendarUtils
         LocalDate firstOfMonth = CalendarUtils.selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
-        for(int i = 1; i <= 42; i++)
+        for(int i = 1; i <= 31; i++)
         {
             if(i <= dayOfWeek || i > daysInMonth + dayOfWeek)
                 daysInMonthArray.add(null);

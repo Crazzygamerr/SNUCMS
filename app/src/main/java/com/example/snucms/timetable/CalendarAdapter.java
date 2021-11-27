@@ -51,6 +51,7 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewH
             holder.dayOfMonth.setText(String.valueOf(date.getDayOfMonth()));
             if(date.equals(CalendarUtils.selectedDate))
                 holder.parentView.setBackgroundColor(Color.LTGRAY);
+            holder.bind();
         }
     }
 
@@ -68,26 +69,55 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewH
 
     static class CalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        private final ArrayList<LocalDate> days;
-        public final View parentView;
-        public final TextView dayOfMonth;
-        private final CalendarAdapter.OnItemListener onItemListener;
+        private ArrayList<LocalDate> days;
+        public View parentView;
+        public TextView dayOfMonth;
+        public TextView[] eventView;
+        private CalendarAdapter.OnItemListener onItemListener;
 
         public CalendarViewHolder(@NonNull View itemView, CalendarAdapter.OnItemListener onItemListener, ArrayList<LocalDate> days)
         {
             super(itemView);
             parentView = itemView.findViewById(R.id.parentView);
             dayOfMonth = itemView.findViewById(R.id.cellDayText);
+
+            eventView = new TextView[5];
+            eventView[0] = itemView.findViewById(R.id.eventView1);
+            eventView[1] = itemView.findViewById(R.id.eventView2);
+            eventView[2] = itemView.findViewById(R.id.eventView3);
+            eventView[3] = itemView.findViewById(R.id.eventView4);
+            eventView[4] = itemView.findViewById(R.id.eventView5);
+
             this.onItemListener = onItemListener;
             this.days = days;
             itemView.setOnClickListener(this);
+        }
+
+        public void bind() {
+            //System.out.println(CalendarUtils.dailyEventMap.keySet().toArray()[0] + "----------");
+            /*if(getAdapterPosition() < days.size()
+                    && getAdapterPosition() > -1)
+            System.out.println(days.get(getAdapterPosition()).getDayOfMonth() + "-----");*/
+
+            if(getAdapterPosition() < days.size()
+                    && getAdapterPosition() > -1
+                    && CalendarUtils.dailyEventMap
+                    .containsKey(days.get(getAdapterPosition()).getDayOfMonth())) {
+                ArrayList<String> dailyEvents = CalendarUtils.dailyEventMap
+                        .get(days.get(getAdapterPosition()).getDayOfMonth());
+                if (dailyEvents != null) {
+                    for (int i = 0; i < dailyEvents.size(); i++) {
+                        eventView[i].setText(dailyEvents.get(i));
+                        eventView[i].setVisibility(View.VISIBLE);
+                    }
+                }
+            }
         }
 
         @Override
         public void onClick(View view)
         {
             onItemListener.onItemClick(getAdapterPosition(), days.get(getAdapterPosition()));
-
         }
     }
 }
