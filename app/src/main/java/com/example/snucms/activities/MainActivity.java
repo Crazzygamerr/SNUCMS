@@ -192,6 +192,9 @@ public class MainActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(view -> {
             SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(getString(R.string.pref_file_key), Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("netid", "");
+            editor.putString("name", "");
+            editor.putString("rollno", "");
             editor.clear();
             editor.apply();
             startActivity(new Intent(MainActivity.this, LoginPage.class));
