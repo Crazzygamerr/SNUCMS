@@ -46,6 +46,21 @@ public class HourAdapter extends ArrayAdapter<HourEvent>
         TextView event2 = convertView.findViewById(R.id.event2);
         TextView event3 = convertView.findViewById(R.id.event3);
 
+        /*int i;
+        for(i=0;i<3;i++) {
+            if(i < events.size()) {
+                if(events.size() > 3 && i == 2) {
+                    event3.setVisibility(View.VISIBLE);
+                    String eventsNotShown = String.valueOf(events.size() - 2);
+                    eventsNotShown += " More Events";
+                    event3.setText(eventsNotShown);
+                } else {
+                    setEvent(event1, events.get(0));
+                }
+            } else {
+
+            }
+        }*/
         if(events.size() == 0)
         {
             hideEvent(event1);
@@ -78,6 +93,7 @@ public class HourAdapter extends ArrayAdapter<HourEvent>
             String eventsNotShown = String.valueOf(events.size() - 2);
             eventsNotShown += " More Events";
             event3.setText(eventsNotShown);
+
         }
     }
 

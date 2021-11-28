@@ -75,15 +75,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPickDate"
-            android:layout_width="115dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="10dp"
-            android:background="#75e6da"
+            android:background="@drawable/mybutton2"
             android:onClick="showDatePickerDialog"
             android:text="Pick date"
             android:textColor="@color/black"
@@ -121,15 +121,15 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPickTime"
-            android:layout_width="118dp"
-            android:layout_height="43dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-       android:background="#75e6da"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="10dp"
+            android:background="@drawable/mybutton2"
             android:onClick="showTimePickerDialog"
             android:text="Pick time"
             android:textColor="@color/black"
@@ -163,7 +163,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notificationSwitch" />
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -171,38 +172,32 @@
         tools:layout_editor_absoluteX="0dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSaveEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="175dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_toEndOf="@+id/btnRemoveEvent"
-            android:background="#75e6da"
-            android:onClick="saveEventAction"
-            android:text="@string/Save"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRemoveEvent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="#75e6da"
+            android:background="@drawable/mybutton2"
             android:onClick="removeEventAction"
             android:text="Remove"
             android:textColor="@color/black"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnSaveEvent" />
-    </RelativeLayout>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/mybutton2"
+            android:onClick="saveEventAction"
+            android:text="@string/Save"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

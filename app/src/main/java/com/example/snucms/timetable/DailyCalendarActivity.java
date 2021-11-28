@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.snucms.R;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -54,6 +56,7 @@ public class DailyCalendarActivity extends AppCompatActivity
     {
         monthDayText.setText(CalendarUtils.monthDayFromDate(selectedDate));
         String dayOfWeek = selectedDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault());
+        //String dayOfWeek = selectedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
         dayOfWeekTV.setText(dayOfWeek);
 
         HourAdapter hourAdapter = new HourAdapter(getApplicationContext(), hourEventList());

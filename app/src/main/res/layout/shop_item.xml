@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-
     android:padding="10dp"
     android:background="@drawable/tuckshop_2_border"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -31,23 +30,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.51" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAddQty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"
         android:textColor="@color/black"
-        android:background="@drawable/addorderbtn"
+        android:background="@drawable/mybutton2"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSubQty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="-"
-android:background="@drawable/addorderbtn"
+        android:background="@drawable/mybutton2"
         android:textColor="@color/black"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@id/btnAddQty"

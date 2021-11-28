@@ -51,7 +51,7 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
             ArrayList<Event> eventsInDay = Event.eventsForDate(daysInWeek.get(i));
             if(eventsInDay.size() > 0) {
                 ArrayList<String> eventStrings = new ArrayList<>();
-                for(int j=0;j<3 && j<eventsInDay.size();j++)
+                for(int j=0;j<4 && j<eventsInDay.size();j++)
                     eventStrings.add(eventsInDay.get(j).getName());
                 CalendarUtils.dailyEventMap.put(daysInWeek.get(i).getDayOfMonth(), eventStrings);
             }

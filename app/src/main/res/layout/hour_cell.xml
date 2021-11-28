@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:id="@+id/hourCellLL"
-    android:background="#d4f1f4"
+    android:background="#222831"
     android:layout_height="60dp">
 
     <TextView
@@ -13,11 +13,11 @@
         android:gravity="center"
         android:id="@+id/timeTV"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="10:00"/>
 
     <LinearLayout
-        android:background="#d4f1f4"
+        android:background="#222831"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp">
@@ -32,7 +32,7 @@
             android:id="@+id/event1"
             android:textSize="12sp"
             android:lines="2"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Event 1"/>
 
         <TextView
@@ -45,7 +45,7 @@
             android:id="@+id/event2"
             android:textSize="12sp"
             android:lines="2"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Event 2"/>
 
         <TextView
@@ -58,7 +58,7 @@
             android:id="@+id/event3"
             android:textSize="12sp"
             android:lines="2"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Event 3"/>
 
     </LinearLayout>

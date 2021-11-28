@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,10 +42,13 @@ public class AddOrder extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_order);
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(getDrawable(R.drawable.img_1));
 
         Spinner spinnerShop = findViewById(R.id.spinnerShop);
         ArrayAdapter<String> adapter = new ArrayAdapter(
-                this,
+                getApplicationContext(),
                 android.R.layout.simple_spinner_dropdown_item,
                 shops.toArray()
         );

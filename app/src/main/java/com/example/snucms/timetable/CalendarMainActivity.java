@@ -58,7 +58,7 @@ public class CalendarMainActivity extends AppCompatActivity implements CalendarA
             ArrayList<Event> eventsInDay = Event.eventsForDate(daysInMonth.get(i));
             if(eventsInDay.size() > 0) {
                 ArrayList<String> eventStrings = new ArrayList<>();
-                for(int j=0;j<5 && j<eventsInDay.size();j++) {
+                for(int j=0;j<4 && j<eventsInDay.size();j++) {
                     eventStrings.add(eventsInDay.get(j).getName());
                 }
                 CalendarUtils.dailyEventMap.put(daysInMonth.get(i).getDayOfMonth(), eventStrings);

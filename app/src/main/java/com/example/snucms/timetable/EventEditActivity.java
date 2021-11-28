@@ -139,7 +139,8 @@ public class EventEditActivity extends AppCompatActivity
                 }
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), (7 * 24 * 60 * 60 * 1000), alarmIntent);
             } else {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmIntent);
+                if(!cal.before(calendar))
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarmIntent);
             }
         }
 

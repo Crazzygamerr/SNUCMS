@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/Sdk/platforms/android-31/data/res/drawable/btn_dropdown.xml" value="0.2703125" />
+        <entry key="..\:/Android/Sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.1125" />
         <entry key="..\:/App/SNUCMS/app/src/main/res/drawable/border_set.xml" value="0.1" />
         <entry key="..\:/App/SNUCMS/app/src/main/res/drawable/cardlayout.xml" value="0.1" />
         <entry key="..\:/App/SNUCMS/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1" />
@@ -81,7 +83,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
