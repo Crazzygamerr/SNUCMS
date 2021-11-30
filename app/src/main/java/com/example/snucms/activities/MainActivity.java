@@ -3,7 +3,9 @@ package com.example.snucms.activities;
 import com.example.snucms.R;
 import com.example.snucms.callbob.CallBob;
 import com.example.snucms.gymslot.GymSlot;
+import com.example.snucms.jsonHelper;
 import com.example.snucms.timetable.CalendarMainActivity;
+import com.example.snucms.timetable.CalendarUtils;
 import com.example.snucms.tuckshop.Tuckshop;
 
 import android.content.Context;
@@ -197,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
             editor.putString("rollno", "");
             editor.clear();
             editor.apply();
+            CalendarUtils.eventsList.clear();
+            CalendarUtils.dailyEventMap.clear();
+            (new jsonHelper(getApplicationContext())).clearJson();
             startActivity(new Intent(MainActivity.this, LoginPage.class));
         });
 

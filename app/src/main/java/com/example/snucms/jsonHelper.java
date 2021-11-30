@@ -80,4 +80,8 @@ public class jsonHelper {
         bufferedWriter.close();
     }
 
+    public void clearJson() {
+        jsonFile.delete();
+    }
+
 }
