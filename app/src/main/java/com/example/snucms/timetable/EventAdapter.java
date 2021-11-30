@@ -56,7 +56,7 @@ public class EventAdapter extends ArrayAdapter<com.example.snucms.timetable.Even
             /*ConstraintLayout eventLayoutInner = itemView.findViewById(R.id.eventLayoutInner);
             if(!blue)
                 eventLayoutInner.setBackground(ContextCompat.getDrawable(context, R.drawable.mybutton));
-            blue = !blue;
+            blue = !blue;*/
 
             itemView.findViewById(R.id.eventCellLL).setOnClickListener(view -> {
                 context.startActivity(
@@ -64,7 +64,7 @@ public class EventAdapter extends ArrayAdapter<com.example.snucms.timetable.Even
                                 .putExtra("pos", position)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 );
-            });*/
+            });
             return itemView;
         } else
             return new Space(context);
